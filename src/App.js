@@ -94,7 +94,13 @@ class App extends Component {
     if (this.state.isLoading) {
       return <Loading />;
     }
-    return <Map />;
+    return (
+      <Map
+        lat={this.state.location.lat}
+        lng={this.state.location.long}
+        timestamp={this.state.location.time}
+      />
+    );
   }
 
   checkMessage() {
@@ -125,6 +131,3 @@ class App extends Component {
   }
 }
 export default App;
-
-//messageToSend, it has no value means there is no message
-//if there is a value, then adds the message component
