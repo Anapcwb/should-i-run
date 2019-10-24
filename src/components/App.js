@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../styles/App.css";
 import Loading from "./Loading";
 import Map from "./Map";
 import Message from "./Message";
@@ -111,11 +111,11 @@ class App extends Component {
       if (this.state.messages[i].time < Date.now()) {
         //if so, add a message component
         //return <Message />;
-        console.log(
+        /*console.log(
           "I HAVE A MESSAGE",
           this.state.messages[i].time,
           Date.now()
-        );
+        );*/
 
         //this stores the iterated content of Messages in messageToSend empty string value
         this.setState({ messageToSend: this.state.messages[i].content });
@@ -123,6 +123,7 @@ class App extends Component {
     }
   }
 
+  //this is s conditional rendering to check whether there is a message due to be delivered and display it in Message subcomponent, otherwise return nothing
   getMessage() {
     if (this.state.messageToSend === "") {
       return;
