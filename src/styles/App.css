@@ -1,3 +1,7 @@
+.html {
+  font-family: 'Roboto', sans-serif;
+}
+
 .header {
   background-color: #3f6891;
   display: flex;
@@ -19,4 +23,15 @@
 
 .stylingLogo {
   margin-top: 10px;
+}
+
+i {
+  color: #3f6891;
+  font-size: 40px;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 20px;
+  background-color: #3f6891;
 }
