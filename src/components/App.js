@@ -4,7 +4,6 @@ import Loading from "./Loading";
 import Map from "./Map";
 import Message from "./Message";
 import Header from "./Header";
-//import { arrayExpression } from "@babel/types";
 
 class App extends Component {
   constructor(props) {
@@ -68,9 +67,9 @@ class App extends Component {
         //these setState change the state.location.lat and state.location.long dynamically with the coordinates variable to retrieve user's current location,
         //change state.isLoading to false to notify that the loading screen has been loaded
         //change state.gpsSignal to true to notify that the GPS signal to retrieve the location has been found
-        //this.setState({ location: coordinates });
-        //this.setState({ isLoading: false });
-        //this.setState({ gpsSignal: true });
+        this.setState({ location: coordinates });
+        this.setState({ isLoading: false });
+        this.setState({ gpsSignal: true });
 
         console.log(this.state);
 

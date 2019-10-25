@@ -8,7 +8,7 @@ class Loading extends Component {
       <div className="loading">
         <h1>Should I Run?</h1>
         <div className="loadingLogo">
-          <img src={loadingLogo} alt="logo" />
+          <img src={loadingLogo} className="stylingLoadingLogo" alt="logo" />
         </div>
         <p>&copy; Wild Devs London 2019</p>
       </div>
