@@ -4,6 +4,7 @@ import Expiration from "./Expiration";
 import CloseWindowButton from "./CloseWindowButton";
 import Button from "./Button";
 import "../styles/App.css";
+import "../styles/Ana.css";
 
 class Input extends React.Component {
   /*constructor(props) {
