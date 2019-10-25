@@ -14,7 +14,7 @@ class Map extends Component {
       lat: null,
       lng: null
     },
-    expiryTime: null
+    expiryTime: '00:00'
   };
 
   center = {
@@ -30,6 +30,7 @@ class Map extends Component {
         <Input
           onClearSession={this.clearSession}
           onStartSession={this.startSession}
+          onSetExpiry={this.setExpiry}
         />
       );
     } else if (this.state.status === 'inSession') {
@@ -75,17 +76,21 @@ class Map extends Component {
     this.setState({ status: 'noSession' });
   };
 
-  startSession = expiryTime => {
+  startSession = () => {
     this.setState({
       status: 'inSession',
-      expiryTime: expiryTime,
+
       sessionStartLocation: {
         lat: this.props.lat,
         lng: this.props.lng
       }
     });
-    //console.log(this.state);
   };
 }
 
+setExpiry = expiration => {
+  this.setState({
+    expiryTime: expiration
+  });
+};
 export default Map;
