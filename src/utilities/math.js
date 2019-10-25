@@ -1,5 +1,5 @@
 //this function converts users' inputs that contain hours and minutes to unix timestamp
-//for the purpose of taking duration of the parking ticket and then add it to the current time
+//for the purpose of taking expiry of the parking ticket for the duration input and then add it to the current time
 function parkingDuration(hour, minute) {
   //convert hours to seconds
   var hrs = hour * 3600;

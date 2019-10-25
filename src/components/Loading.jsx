@@ -1,8 +1,18 @@
 import React, { Component } from "react";
+import loadingLogo from "../styles/loadingLogo.svg";
+import "../styles/App.css";
 
 class Loading extends Component {
   render() {
-    return <h1>Loading Subcomponent</h1>;
+    return (
+      <div className="loading">
+        <h1>Should I Run?</h1>
+        <div className="loadingLogo">
+          <img src={loadingLogo} className="stylingLoadingLogo" alt="logo" />
+        </div>
+        <p>&copy; Wild Devs London 2019</p>
+      </div>
+    );
   }
 }
 

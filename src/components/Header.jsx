@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import appLogo from "../styles/appLogo.svg";
+import headerLogo from "../styles/headerLogo.svg";
 import "../styles/App.css";
 
 class Header extends Component {
@@ -11,7 +11,7 @@ class Header extends Component {
             <h1>Should I Run?</h1>
           </div>
           <div className="headerLogo">
-            <img src={appLogo} className="stylingLogo" alt="logo" />
+            <img src={headerLogo} className="stylingHeaderLogo" alt="logo" />
           </div>
         </div>
       </header>
