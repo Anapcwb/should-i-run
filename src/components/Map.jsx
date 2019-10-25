@@ -86,11 +86,12 @@ class Map extends Component {
       }
     });
   };
+
+  setExpiry = expiration => {
+    this.setState({
+      expiryTime: expiration
+    });
+  };
 }
 
-setExpiry = expiration => {
-  this.setState({
-    expiryTime: expiration
-  });
-};
 export default Map;
