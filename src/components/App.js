@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import '../styles/App.css';
-import Loading from './Loading';
-import Map from './Map';
-import Message from './Message';
-import Header from './Header';
+import React, { Component } from "react";
+import "../styles/App.css";
+import Loading from "./Loading";
+import Map from "./Map";
+import Message from "./Message";
+import Header from "./Header";
+import Input from "./Input";
 
 class App extends Component {
   constructor(props) {
@@ -17,17 +18,17 @@ class App extends Component {
       },
       isLoading: true,
       gpsSignal: false,
-      messageToSend: '',
+      messageToSend: "",
       messages: [
         {
           time: Date.now() + 10000,
           content:
-            'This is a message to tell users that their parking time is expiring.'
+            "This is a message to tell users that their parking time is expiring."
         },
         {
           time: Date.now() + 30000,
           content:
-            'This is a message to tell users that their parking duration has expired.'
+            "This is a message to tell users that their parking duration has expired."
         }
       ]
     };
@@ -55,7 +56,7 @@ class App extends Component {
   getLocation() {
     let coordinates = {};
     // get coordinates from geolocation api
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       /* geolocation is available */
       navigator.geolocation.getCurrentPosition(position => {
         coordinates = {
@@ -77,7 +78,7 @@ class App extends Component {
       });
     } else {
       /* geolocation IS NOT available */
-      console.log('geolocation is not available');
+      console.log("geolocation is not available");
 
       //this setState change the gpsSignal state back to false,
       //when there is no network after the app has been loaded and the location has been retrieved
@@ -104,7 +105,7 @@ class App extends Component {
   }
 
   checkMessage() {
-    console.log('I just ran!');
+    console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
       //for each object in messages array, check if its time is less than the current time
@@ -125,7 +126,7 @@ class App extends Component {
 
   //this is s conditional rendering to check whether there is a message due to be delivered and display it in Message subcomponent, otherwise return nothing
   getMessage() {
-    if (this.state.messageToSend === '') {
+    if (this.state.messageToSend === "") {
       return;
     }
     return <Message msg={this.state.messageToSend} />;
