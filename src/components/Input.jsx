@@ -24,13 +24,13 @@ class Input extends React.Component {
   render() {
     return (
       <div>
-        <CloseWindowButton handleClick={this.props.onClearSession}/>
+        <CloseWindowButton handleClick={this.props.onClearSession} />
         {this.getTimer()}
         <label class="switch">
           <input type="checkbox" onClick={() => this.ToggleButton()} />
           <span class="slider round"></span>
         </label>
-        <Button text="START" handleClick={() => this.props.onStartSession()}/>
+        <Button text="START" handleClick={() => this.props.onStartSession()} />
       </div>
     );
   }
@@ -39,7 +39,7 @@ class Input extends React.Component {
     if (this.state.isDuration) {
       return <Duration />;
     } else {
-      return <Expiration />;
+      return <Expiration onSetExpiry={this.props.onSetExpiry} />;
     }
   }
 }

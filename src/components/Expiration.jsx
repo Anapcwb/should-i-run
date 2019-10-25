@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "./Button";
+//import Button from "./Button";
 import "../styles/App.css";
 
 class Expiration extends Component {
@@ -13,9 +13,8 @@ class Expiration extends Component {
   handleInput = event => {
     console.log(">>>" + event);
 
-    
-
     this.setState({ expiration: event.target.value });
+    this.props.onSetExpiry(this.state.expiration);
   };
 
   state = {};
@@ -28,7 +27,7 @@ class Expiration extends Component {
           type="time"
           id="startTime"
           value={this.state.expiration}
-          onChange={this.handleInput}
+          onChange={() => this.handleInput}
         ></input>
       </div>
     );
