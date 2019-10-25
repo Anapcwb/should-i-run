@@ -26,7 +26,7 @@
 }
 
 i {
-  color: #3f6891;
+  color: white;
   font-size: 40px;
 }
 
@@ -96,4 +96,37 @@ i {
 .stylingLoadingLogo {
   -webkit-animation: animate-logo 2s infinite;
   animation: animate-logo 2s infinite;
+}
+
+.styleApp {
+  position: relative;
+  z-index: 200;
+}
+
+.styleMessageContainer {
+  position: absolute;
+  top: 9rem;
+  width: 100%;
+}
+
+.styleMessage p {
+  color: white;
+  font-weight: 500;
+  font-size: 24px;
+  padding: 0 5px;
+  text-align: center;
+}
+
+.styleMessage {
+  background-color: #3f6891;
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.fa-times-circle {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-top: 10px;
 }

@@ -23,12 +23,24 @@ class App extends Component {
         {
           id: 1,
           time: Date.now() + 5000,
-          content: "Your parking time is expiring."
+          content: "Your parking time is running out!"
         },
         {
           id: 2,
           time: Date.now() + 10000,
-          content: "Your parking duration has expired."
+          content:
+            "You have gone too far away from your vehicle, you are going to struggle to get back in time!"
+        },
+        {
+          id: 3,
+          time: Date.now() + 15000,
+          content:
+            "Considering the remaining time of your parking ticket, the distance you are from your vehicle means that you need to head back to your vehicle now!"
+        },
+        {
+          id: 4,
+          time: Date.now() + 20000,
+          content: "Your parking time has run out!"
         }
       ]
     };
@@ -44,7 +56,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="styleApp">
         {/*this method is called inside the render method, because it outputs the display*/}
         {this.getActiveScreen()}
         {/*this is a conditional rendering using shorthand if statement that only applies when a method cannot be called from the render method because it has more than one or two rendering methods at once*/}
