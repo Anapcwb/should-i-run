@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Button from "./Button";
+import Button from "./Button";
 import "../styles/App.css";
 
 class Expiration extends Component {
@@ -11,10 +11,8 @@ class Expiration extends Component {
   }
 
   handleInput = event => {
-    console.log(">>>" + event);
-
     this.setState({ expiration: event.target.value });
-    this.props.onSetExpiry(this.state.expiration);
+    this.props.onSetExpiry(event.target.value);
   };
 
   state = {};
@@ -22,12 +20,12 @@ class Expiration extends Component {
   render() {
     return (
       <div className="timer">
-        <label htmlFor="startTime">Start time: </label>
+        <label htmlFor="startTime">Set Expiry: </label>
         <input
           type="time"
           id="startTime"
           value={this.state.expiration}
-          onChange={() => this.handleInput}
+          onChange={this.handleInput}
         ></input>
       </div>
     );

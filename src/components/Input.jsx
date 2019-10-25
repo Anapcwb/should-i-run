@@ -37,7 +37,7 @@ class Input extends React.Component {
 
   getTimer() {
     if (this.state.isDuration) {
-      return <Duration />;
+      return <Duration onSetExpiry={this.props.onSetExpiry} />;
     } else {
       return <Expiration onSetExpiry={this.props.onSetExpiry} />;
     }
