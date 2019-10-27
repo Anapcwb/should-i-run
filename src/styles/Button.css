@@ -1,0 +1,18 @@
+.btn {
+  font-size: 20px;
+  min-width: 300px;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+.blue {
+  background-color: #3f6891;
+  padding: 20px;
+}
+
+.red {
+  background-color: #d12f2f;
+  padding: 10px;
+}

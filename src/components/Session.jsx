@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import '../styles/Controls.css';
 
 class Session extends React.Component {
   state = {
@@ -48,10 +49,13 @@ class Session extends React.Component {
   render() {
     const { hours, minutes, seconds } = this.state.timer;
     return (
-      <div>
-        <h1>Session Active</h1>
-        <h2>{`${hours}:${minutes}:${seconds}`}</h2>
-        <Button handleClick={this.props.onClearSession} text="Dismiss" />
+      <div className="controls">
+        <div className="timer">{`${hours}:${minutes}:${seconds}`}</div>
+        <Button
+          handleClick={this.props.onClearSession}
+          text="DISMISS"
+          color="red"
+        />
       </div>
     );
   }
