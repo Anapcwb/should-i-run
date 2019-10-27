@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
 import NoSession from './NoSession';
 import Session from './Session';
 import Input from './Input';
-import CurrentLocation from './CurrentLocation';
-import StoredLocation from './StoredLocation';
-import GoogleMap from './GoogleMap';
+import '../styles/GoogleMap.css';
+import { GOOGLE_MAPS_API } from '../apis/googleMapsApi';
 
 class Map extends Component {
+  // initialize component state
   state = {
     status: 'noSession',
     inputTimes: null,
@@ -18,10 +17,52 @@ class Map extends Component {
     expiryTime: '00:00'
   };
 
-  // set the center location for the map
+  map = null;
+
+  // set the center location for the map received from App as props
   center = {
     lat: this.props.lat,
     lng: this.props.lng
+  };
+
+  // render the map when component mounts
+  componentDidMount() {
+    this.renderMap();
+  }
+
+  // load the Google Maps script tag
+  renderMap = () => {
+    loadScript(GOOGLE_MAPS_API);
+    window.initMap = this.initMap;
+  };
+
+  // Initialize and add the map
+  initMap = () => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: this.center
+    });
+
+    // define markers
+    // TODO: change to the colored icons used in the prototype
+    const runningMarker = new window.google.maps.Marker({
+      position: this.center,
+      icon: 'https://img.icons8.com/metro/26/000000/running.png'
+    });
+
+    const carMarker = new window.google.maps.Marker({
+      posistion: this.state.sessionStartLocation,
+      icon: 'https://img.icons8.com/android/24/000000/car.png'
+    });
+
+    // add markers to the map
+    runningMarker.setMap(map);
+
+    // add the car marker only when in a session
+    //TODO: this is not currently rendering, needs fixing
+    if (this.state.status === 'inSession') {
+      carMarker.setMap(map);
+    }
   };
 
   // conditionally render the controls based on component state
@@ -44,37 +85,18 @@ class Map extends Component {
         />
       );
     }
-    console.log(this.state);
   }
 
   render() {
     return (
-      // Important! Always set the container height explicitly
-      <div>
-        {/* <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyDAFhz0X6KXxM9_WZKe5B8S5Spfc8ubscM' }}
-          defaultCenter={this.center}
-          defaultZoom={15}
-          yesIWantToUseGoogleMapApiInternals
-        >
-          {this.state.status === 'inSession' && (
-            <StoredLocation
-              lat={this.state.sessionStartLocation.lat}
-              lng={this.state.sessionStartLocation.lat}
-            />
-          )}
-          <CurrentLocation lat={this.props.lat} lng={this.props.lng} />
-          <CurrentLocation lat={this.props.lat + 1} lng={this.props.lng + 1} />
-        </GoogleMapReact> */}
-
-        <GoogleMap center={this.center} zoom={15}></GoogleMap>
-
+      <main>
+        <div id="map"></div>
         {this.renderControls()}
-      </div>
+      </main>
     );
   }
 
-  //callback functions
+  //callback functions that set Map state from children
   setTimer = () => {
     this.setState({ status: 'setTimer' });
   };
@@ -99,6 +121,16 @@ class Map extends Component {
       expiryTime: expiration
     });
   };
+}
+
+// append the Google Maps <script> tag to the document
+function loadScript(url) {
+  let index = window.document.getElementsByTagName('script')[0];
+  let script = document.createElement('script');
+  script.src = url;
+  script.async = true;
+  script.defer = true;
+  index.parentNode.insertBefore(script, index);
 }
 
 export default Map;

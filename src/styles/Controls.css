@@ -13,5 +13,6 @@
 .timer {
   color: white;
   font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
   font-size: 40px;
 }
