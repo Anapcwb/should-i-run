@@ -5,6 +5,7 @@ import Session from './Session';
 import Input from './Input';
 import CurrentLocation from './CurrentLocation';
 import StoredLocation from './StoredLocation';
+import GoogleMap from './GoogleMap';
 
 class Map extends Component {
   state = {
@@ -17,11 +18,13 @@ class Map extends Component {
     expiryTime: '00:00'
   };
 
+  // set the center location for the map
   center = {
     lat: this.props.lat,
     lng: this.props.lng
   };
 
+  // conditionally render the controls based on component state
   renderControls() {
     if (this.state.status === 'noSession') {
       return <NoSession onSetTimer={this.setTimer} />;
@@ -48,20 +51,24 @@ class Map extends Component {
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '500px', width: '100%' }}>
-        <GoogleMapReact
+        {/* <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDAFhz0X6KXxM9_WZKe5B8S5Spfc8ubscM' }}
           defaultCenter={this.center}
           defaultZoom={15}
           yesIWantToUseGoogleMapApiInternals
         >
-          <CurrentLocation lat={this.props.lat} lng={this.props.lng} />
           {this.state.status === 'inSession' && (
             <StoredLocation
               lat={this.state.sessionStartLocation.lat}
               lng={this.state.sessionStartLocation.lat}
             />
           )}
-        </GoogleMapReact>
+          <CurrentLocation lat={this.props.lat} lng={this.props.lng} />
+          <CurrentLocation lat={this.props.lat + 1} lng={this.props.lng + 1} />
+        </GoogleMapReact> */}
+
+        <GoogleMap center={this.center} zoom={15}></GoogleMap>
+
         {this.renderControls()}
       </div>
     );
