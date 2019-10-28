@@ -3,6 +3,7 @@ import Button from './Button';
 import '../styles/Controls.css';
 
 class Session extends React.Component {
+  // initialise component state
   state = {
     timer: {
       hours: 0,
@@ -11,10 +12,12 @@ class Session extends React.Component {
     }
   };
 
+  // initialize the intervalID (this is used to clear the interval)
   intervalID = 0;
 
-  calcTimer() {
-    let expiryTime = Date.now() + 1;
+  // calculate and format the countdown timer, and set as state
+  calcTimer(expiryTime) {
+    //let expiryTime = Date.now() + 1;
     this.intervalID = setInterval(() => {
       let currentTime = Date.now();
       if (currentTime <= expiryTime) {
@@ -39,12 +42,14 @@ class Session extends React.Component {
   }
 
   componentDidMount() {
-    this.calcTimer();
+    this.calcTimer(this.props.expiryTime);
   }
 
   componentWillUnmount() {
     clearInterval(this.intervalID);
   }
+
+  // TODO: dispatch messages when conditions are met
 
   render() {
     const { hours, minutes, seconds } = this.state.timer;

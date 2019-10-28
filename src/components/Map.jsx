@@ -17,9 +17,12 @@ class Map extends Component {
     expiryTime: '00:00'
   };
 
-  map = null;
+  // declare fields
+  map = undefined;
+  runningMarker = undefined;
+  carMarker = undefined;
 
-  // set the center location for the map received from App as props
+  // set the center location for the map received from App
   center = {
     lat: this.props.lat,
     lng: this.props.lng
@@ -28,7 +31,20 @@ class Map extends Component {
   // render the map when component mounts
   componentDidMount() {
     this.renderMap();
+    //this.addMarkers();
   }
+
+  // addMarkers() {
+  //   // add markers to the map
+  //   this.runningMarker.setMap(this.map);
+
+  //   // add the car marker only when in a session
+  //   // FIXME: this is not currently rendering, needs fixing
+  //   // (need to be able to call setMap from outside the scope of initMap)
+  //   if (this.state.status === 'inSession') {
+  //     this.carMarker.setMap(this.map);
+  //   }
+  // }
 
   // load the Google Maps script tag
   renderMap = () => {
@@ -38,31 +54,35 @@ class Map extends Component {
 
   // Initialize and add the map
   initMap = () => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
+    this.map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: this.center
     });
+    console.log(window.google);
+
+    // marker code goes here
 
     // define markers
     // TODO: change to the colored icons used in the prototype
-    const runningMarker = new window.google.maps.Marker({
+    this.runningMarker = new window.google.maps.Marker({
       position: this.center,
       icon: 'https://img.icons8.com/metro/26/000000/running.png'
     });
 
-    const carMarker = new window.google.maps.Marker({
-      posistion: this.state.sessionStartLocation,
-      icon: 'https://img.icons8.com/android/24/000000/car.png'
+    this.carMarker = new window.google.maps.Marker({
+      posistion: this.center,
+      icon: 'https://img.icons8.com/material/24/000000/car--v1.png'
     });
 
     // add markers to the map
-    runningMarker.setMap(map);
+    this.runningMarker.setMap(this.map);
+    console.log('Running: ', this.runningMarker);
 
     // add the car marker only when in a session
-    //TODO: this is not currently rendering, needs fixing
-    if (this.state.status === 'inSession') {
-      carMarker.setMap(map);
-    }
+    // FIXME: this is not currently rendering, needs fixing
+    // (need to be able to call setMap from outside the scope of initMap)
+    this.carMarker.setMap(this.map);
+    console.log('Car: ', this.carMarker);
   };
 
   // conditionally render the controls based on component state
