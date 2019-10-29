@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Marker.css';
 
 function Marker(props) {
   return (

@@ -82,16 +82,16 @@ class Map extends Component {
         title: 'Current Location',
         lat: this.props.lat,
         lng: this.props.lng,
-        icon: 'https://img.icons8.com/metro/26/000000/running.png'
+        icon: 'https://i.imgur.com/9Fho7kq.png'
       }
     ];
 
     this.state.status === 'inSession' &&
-      markers.push({
+      markers.unshift({
         title: 'Stored Location',
         lat: this.state.sessionStartLocation.lat,
         lng: this.state.sessionStartLocation.lng,
-        icon: 'https://img.icons8.com/material/24/000000/car--v1.png'
+        icon: 'https://i.imgur.com/4lwh63l.png'
       });
 
     return (
