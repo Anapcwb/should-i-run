@@ -28,6 +28,10 @@ class Map extends Component {
     lng: this.props.lng
   };
 
+  london = {
+    lat: 51.5074,
+    lng: -0.1278
+  };
   // render the map when component mounts
   componentDidMount() {
     this.renderMap();
@@ -60,29 +64,29 @@ class Map extends Component {
     });
     console.log(window.google);
 
+    const locations = [
+      {
+        title: 'Current Location',
+        position: this.center,
+        icon: 'https://img.icons8.com/metro/26/000000/running.png',
+        map: this.map
+      },
+      {
+        title: 'Stored Location',
+        position: this.london,
+        icon: 'https://img.icons8.com/material/24/000000/car--v1.png',
+        map: this.map
+      }
+    ];
     // marker code goes here
+    function addMarkers(locations) {
+      locations.forEach(location => {
+        const marker = new window.google.maps.Marker(location);
+        console.log(location);
+      });
+    }
 
-    // define markers
-    // TODO: change to the colored icons used in the prototype
-    this.runningMarker = new window.google.maps.Marker({
-      position: this.center,
-      icon: 'https://img.icons8.com/metro/26/000000/running.png'
-    });
-
-    this.carMarker = new window.google.maps.Marker({
-      posistion: this.center,
-      icon: 'https://img.icons8.com/material/24/000000/car--v1.png'
-    });
-
-    // add markers to the map
-    this.runningMarker.setMap(this.map);
-    console.log('Running: ', this.runningMarker);
-
-    // add the car marker only when in a session
-    // FIXME: this is not currently rendering, needs fixing
-    // (need to be able to call setMap from outside the scope of initMap)
-    this.carMarker.setMap(this.map);
-    console.log('Car: ', this.carMarker);
+    addMarkers(locations);
   };
 
   // conditionally render the controls based on component state
