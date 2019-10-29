@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import Duration from "./Duration";
-import Expiration from "./Expiration";
-import CloseWindowButton from "./CloseWindowButton";
-import Button from "./Button";
-import "../styles/App.css";
+import React, { Component } from 'react';
+import Duration from './Duration';
+import Expiration from './Expiration';
+import CloseWindowButton from './CloseWindowButton';
+import Button from './Button';
+import '../styles/App.css';
+import '../styles/Controls.css';
 
 class Input extends React.Component {
   /*constructor(props) {
@@ -23,7 +24,7 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="controls">
         <CloseWindowButton handleClick={this.props.onClearSession} />
         {this.getTimer()}
         <label class="switch">
