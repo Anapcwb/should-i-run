@@ -24,14 +24,16 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="controls">
         <CloseWindowButton handleClick={this.props.onClearSession} />
         {this.getTimer()}
-        <label class="switch">
+       <label className="switch">
+          <p>Set Duration</p>
           <input type="checkbox" onClick={() => this.ToggleButton()} />
           <span class="slider round"></span>
+          <p >Set Expiration</p>
         </label>
-        <Button text="START" handleClick={() => this.props.onStartSession()} />
+        <Button className="btn btn-primary" text="START" handleClick={() => this.props.onStartSession()} />
       </div>
     );
   }
