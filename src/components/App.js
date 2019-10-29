@@ -52,6 +52,13 @@ class App extends Component {
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
     this.interval = setInterval(() => this.checkMessage(), 1000);
+    console.log(this.state.messages);
+    //this.removeMessages();
+    this.addMessage(1570669322, "Parking message");
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.messages);
   }
 
   render() {
@@ -114,6 +121,8 @@ class App extends Component {
           lat={this.state.location.lat}
           lng={this.state.location.long}
           timestamp={this.state.location.time}
+          removeMessages={this.removeMessages}
+          addMessage={this.addMessage}
         />
       </React.Fragment>
     );
@@ -148,7 +157,7 @@ class App extends Component {
       return;
     }
     return (
-      <Message msg={this.state.messageToSend} msgButton={this.msgButton} />
+      <Message msgButton={this.msgButton} msg={this.state.messageToSend} />
     );
   }
 
@@ -163,8 +172,32 @@ class App extends Component {
     );
     this.state.messages.splice(index, 1);
     console.log(this.state.messageIdToSend, index);
-    this.setState({ messageIdToSend: this.state.messages.id });
+    //this.setState({ messageIdToSend: this.state.messages.id });
     this.setState({ messageToSend: "" });
   };
+
+  removeMessages() {
+    this.setState({ messages: {} });
+  }
+
+  addMessage(unixTime, content) {
+    //create an obj based on the props its gonna get
+    var pushMsg = {
+      id: getRandomId(123456789121, 234567891234),
+      time: unixTime,
+      content: content
+    };
+    //push this obj into messages array
+    this.state.messages.push(pushMsg);
+    //random id
+    function getRandomId(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
+    }
+  }
 }
 export default App;
+//write two functions to delete messages when a session has ended
+//and to add a message in an array object when a session has started
+//make a new object with properties and then push this obj onto the array as messages
+//two parameters id find the highest id and add +1, time and content
+//12digits math random math round

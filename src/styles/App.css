@@ -113,8 +113,10 @@ i {
   color: white;
   font-weight: 500;
   font-size: 24px;
-  padding: 0 5px;
-  text-align: center;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: justify;
 }
 
 .styleMessage {
@@ -129,4 +131,5 @@ i {
   justify-content: flex-end;
   margin-right: 10px;
   margin-top: 10px;
+  padding-top: 0.7rem;
 }
