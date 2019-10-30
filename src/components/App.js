@@ -64,8 +64,9 @@ class App extends Component {
   }
 
   render() {
-    return (
+    return ( 
       <div className="styleApp">
+      <Header />
         {/*this method is called inside the render method, because it outputs the display*/}
         {this.getActiveScreen()}
         {/*this is a conditional rendering using shorthand if statement that only applies when a method cannot be called from the render method because it has more than one or two rendering methods at once*/}
