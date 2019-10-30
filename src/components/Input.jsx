@@ -24,7 +24,9 @@ class Input extends React.Component {
 
   render() {
     return (
+
       <div className="backgroundPosition">
+
         <CloseWindowButton handleClick={this.props.onClearSession} />
         {this.getTimer()}
         <div className="container">
