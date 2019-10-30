@@ -23,12 +23,24 @@ class App extends Component {
         {
           id: 1,
           time: Date.now() + 5000,
-          content: "Your parking time is expiring."
+          content: "Your parking time is running out!"
         },
         {
           id: 2,
           time: Date.now() + 10000,
-          content: "Your parking duration has expired."
+          content:
+            "You have gone too far away from your vehicle, you are going to struggle to get back in time!"
+        },
+        {
+          id: 3,
+          time: Date.now() + 15000,
+          content:
+            "Considering the remaining time of your parking ticket, the distance you are from your vehicle means that you need to head back to your vehicle now!"
+        },
+        {
+          id: 4,
+          time: Date.now() + 20000,
+          content: "Your parking time has run out!"
         }
       ]
     };
@@ -39,12 +51,21 @@ class App extends Component {
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
-    this.interval = setInterval(() => this.checkMessage(), 2000);
+
+    this.interval = setInterval(() => this.checkMessage(), 1000);
+    console.log(this.state.messages);
+    //this.removeMessages();
+    this.addMessage(1570669322, "Parking message");
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.messages);
+
   }
 
   render() {
     return (
-      <div>
+      <div className="styleApp">
         {/*this method is called inside the render method, because it outputs the display*/}
         {this.getActiveScreen()}
         {/*this is a conditional rendering using shorthand if statement that only applies when a method cannot be called from the render method because it has more than one or two rendering methods at once*/}
@@ -102,6 +123,8 @@ class App extends Component {
           lat={this.state.location.lat}
           lng={this.state.location.long}
           timestamp={this.state.location.time}
+          removeMessages={this.removeMessages}
+          addMessage={this.addMessage}
         />
       </React.Fragment>
     );
@@ -143,7 +166,7 @@ class App extends Component {
       return;
     }
     return (
-      <Message msg={this.state.messageToSend} msgButton={this.msgButton} />
+      <Message msgButton={this.msgButton} msg={this.state.messageToSend} />
     );
   }
 
@@ -158,8 +181,32 @@ class App extends Component {
     );
     this.state.messages.splice(index, 1);
     console.log(this.state.messageIdToSend, index);
-    this.setState({ messageIdToSend: this.state.messages.id });
+    //this.setState({ messageIdToSend: this.state.messages.id });
     this.setState({ messageToSend: "" });
   };
+
+  removeMessages() {
+    this.setState({ messages: {} });
+  }
+
+  addMessage(unixTime, content) {
+    //create an obj based on the props its gonna get
+    var pushMsg = {
+      id: getRandomId(123456789121, 234567891234),
+      time: unixTime,
+      content: content
+    };
+    //push this obj into messages array
+    this.state.messages.push(pushMsg);
+    //random id
+    function getRandomId(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
+    }
+  }
 }
 export default App;
+//write two functions to delete messages when a session has ended
+//and to add a message in an array object when a session has started
+//make a new object with properties and then push this obj onto the array as messages
+//two parameters id find the highest id and add +1, time and content
+//12digits math random math round
