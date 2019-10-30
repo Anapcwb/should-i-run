@@ -51,7 +51,6 @@ class App extends Component {
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
-
     this.interval = setInterval(() => this.checkMessage(), 1000);
     console.log(this.state.messages);
     //this.removeMessages();
@@ -60,13 +59,11 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log(this.state.messages);
-
   }
 
   render() {
-    return ( 
+    return (
       <div className="styleApp">
-      <Header />
         {/*this method is called inside the render method, because it outputs the display*/}
         {this.getActiveScreen()}
         {/*this is a conditional rendering using shorthand if statement that only applies when a method cannot be called from the render method because it has more than one or two rendering methods at once*/}
