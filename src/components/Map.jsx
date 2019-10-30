@@ -7,36 +7,33 @@ import Marker from "./Marker";
 import "../styles/GoogleMap.css";
 import { GOOGLE_API_KEY } from "../apis/googleMapsApi";
 
-class Map extends Component {
-  state = {
-    status: "noSession",
-    inputTimes: null,
-    sessionStartLocation: {
-      lat: null,
-      lng: null
-    },
-    expiryTime: "00:00",
-    markers: []
-  };
+import Location from "../utilities/Location";
 
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: "noSession",
+      inputTimes: null,
+      sessionStartLocation: {
+        lat: null,
+        lng: null
+      },
+      expiryTime: "00:00",
+      markers: []
+    };
+  }
+
+  componentDidMount() {
+    const location = new Location();
+
+    location.squareWalk();
+  }
   // set the center location for the map received from App
   center = {
     lat: this.props.lat,
     lng: this.props.lng
   };
-
-  // componentDidMount() {
-  //   this.setState({
-  //     markers: [
-  //       {
-  //         title: 'Current Location',
-  //         lat: this.props.lat,
-  //         lng: this.props.lng,
-  //         icon: 'https://img.icons8.com/metro/26/000000/running.png'
-  //       }
-  //     ]
-  //   });
-  // }
 
   // conditionally render the controls based on component state
   renderControls() {
@@ -79,6 +76,8 @@ class Map extends Component {
   }
 
   render() {
+    console.log(this.location.position);
+
     const markers = [
       {
         title: "Current Location",

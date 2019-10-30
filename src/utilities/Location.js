@@ -1,15 +1,18 @@
 export default class Location {
   watchID = null;
 
-  onPositionReceived(position) {
+  onPositionReceived = position => {
     console.log(position);
-  }
+    this.position.lat = position.coords.latitude;
+    this.position.lng = position.coords.longitude;
+    this.position.unixtime = new Date();
+  };
 
-  locationNotReceived(positionError) {
+  locationNotReceived = positionError => {
     console.log("Posistion Error: ", positionError);
-  }
+  };
 
-  getLocation() {
+  getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.onPositionReceived,
@@ -20,15 +23,16 @@ export default class Location {
         this.locationNotReceived
       );
     }
-  }
+  };
 
-  clearPositionWatch() {
+  clearPositionWatch = () => {
     navigator.geolocation.clearWatch(this.watchID);
-  }
+  };
 
   position = {
-    lat: 0,
-    lng: 0
+    lat: null,
+    lng: null,
+    unixtime: null
   };
 
   config = {
@@ -38,7 +42,8 @@ export default class Location {
     direction: "forwards"
   };
 
-  squareWalk() {
+  squareWalk = () => {
+    console.log(this.config);
     const intervalID = setInterval(function() {
       if (this.config.currentStep < this.config.totalSteps) {
         if (
@@ -72,5 +77,5 @@ export default class Location {
       }
       console.log(this.position);
     }, 500);
-  }
+  };
 }
