@@ -1,11 +1,11 @@
-import React from 'react';
-import Button from './Button';
+import React from "react";
+import Button from "./Button";
+import "../styles/Controls.css";
 
 function NoSession(props) {
   return (
-    <div>
-      <h1>Start new Session</h1>
-      <Button handleClick={props.onSetTimer} text="New Session" />
+    <div className="controls">
+      <Button handleClick={props.onSetTimer} text="NEW SESSION" color="blue" />
     </div>
   );
 }

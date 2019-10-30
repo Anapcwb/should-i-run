@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function CloseWindowButton(props) {
   return (
     <div>
-      <i onClick={props.handleClick} className="fas fa-window-close"></i>
+      <i onClick={props.handleClick} className="fas fa-times-circle"></i>
     </div>
   );
 }

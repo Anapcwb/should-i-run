@@ -1,0 +1,16 @@
+.marker {
+  height: 30px;
+  animation: popout 1s ease;
+}
+
+@keyframes popout {
+  from {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,18 @@
+.controls {
+  position: fixed;
+  bottom: 0px;
+  background-color: rgba(63, 104, 145, 0.7);
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timer {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  font-size: 40px;
+}
