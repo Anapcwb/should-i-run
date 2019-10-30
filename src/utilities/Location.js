@@ -1,76 +1,94 @@
 export default class Location {
-  watchID = null;
+  constructor(mode) {
+    this.mode = mode;
+    this.getLocation();
+    if (mode === "debug") {
+      this.squareWalk();
+    }
+  }
 
-  onPositionReceived(position) {
+  onPositionReceived = position => {
     console.log(position);
-  }
+    this.position.lat = position.coords.latitude;
+    this.position.lng = position.coords.longitude;
+    this.position.unixtime = Date.now();
+  };
 
-  locationNotReceived(positionError) {
+  locationNotReceived = positionError => {
     console.log("Posistion Error: ", positionError);
-  }
+  };
 
-  getLocation() {
+  getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.onPositionReceived,
         this.locationNotReceived
       );
-      this.watchID = navigator.geolocation.watchPosition(
-        this.onPositionReceived,
-        this.locationNotReceived
-      );
+      if (this.mode === "live") {
+        this.watchID = navigator.geolocation.watchPosition(
+          this.onPositionReceived,
+          this.locationNotReceived
+        );
+      }
     }
-  }
+  };
 
-  clearPositionWatch() {
+  clearPositionWatch = () => {
     navigator.geolocation.clearWatch(this.watchID);
-  }
+  };
 
   position = {
-    lat: 0,
-    lng: 0
+    lat: null,
+    lng: null,
+    unixtime: null
   };
 
   config = {
-    increment: 0.001,
-    totalSteps: 10,
+    increment: 0.0001,
+    totalSteps: 100,
     currentStep: 0,
     direction: "forwards"
   };
 
-  squareWalk() {
-    const intervalID = setInterval(function() {
-      if (this.config.currentStep < this.config.totalSteps) {
-        if (
-          this.config.direction === "forwards" ||
-          this.config.direction === "backwards"
-        ) {
-          this.position.lat =
-            this.config.direction === "forwards"
-              ? (this.position.lat += this.config.increment)
-              : (this.position.lat -= this.config.increment);
-        } else if (
-          this.config.direction === "left" ||
-          this.config.direction === "right"
-        ) {
-          this.position.lng =
-            this.config.direction === "left"
-              ? (this.position.lng += this.config.increment)
-              : (this.position.lng -= this.config.increment);
-        }
-        this.config.currentStep += 1;
-      } else {
-        this.config.currentStep = 0;
-        this.config.direction =
+  squareWalk = () => {
+    this.getLocation();
+    this.intervalID = setInterval(() => this.intervalWalk(), 100);
+  };
+
+  intervalWalk = () => {
+    if (this.config.currentStep < this.config.totalSteps) {
+      if (
+        this.config.direction === "forwards" ||
+        this.config.direction === "backwards"
+      ) {
+        this.position.lat =
           this.config.direction === "forwards"
-            ? "left"
-            : this.config.direction === "left"
-            ? "backwards"
-            : this.config.direction === "backwards"
-            ? "right"
-            : "forwards";
+            ? (this.position.lat += this.config.increment)
+            : (this.position.lat -= this.config.increment);
+      } else if (
+        this.config.direction === "left" ||
+        this.config.direction === "right"
+      ) {
+        this.position.lng =
+          this.config.direction === "left"
+            ? (this.position.lng += this.config.increment)
+            : (this.position.lng -= this.config.increment);
       }
-      console.log(this.position);
-    }, 500);
-  }
+      this.config.currentStep += 1;
+    } else {
+      this.config.currentStep = 0;
+      this.config.direction =
+        this.config.direction === "forwards"
+          ? "left"
+          : this.config.direction === "left"
+          ? "backwards"
+          : this.config.direction === "backwards"
+          ? "right"
+          : "forwards";
+    }
+  };
+
+  clearSquareWalk = () => {
+    clearInterval(this.interval);
+  };
 }
