@@ -22,13 +22,12 @@ class Map extends Component {
       expiryTime: "00:00",
       markers: []
     };
+    this.location = new Location("debug"); //or demo
   }
 
-  componentDidMount() {
-    const location = new Location();
-
-    location.squareWalk();
-  }
+  componentDidMount = () => {
+    //this.location.squareWalk();
+  };
   // set the center location for the map received from App
   center = {
     lat: this.props.lat,
@@ -76,13 +75,11 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.location.position);
-
     const markers = [
       {
         title: "Current Location",
-        lat: this.props.lat,
-        lng: this.props.lng,
+        lat: this.location.position.lat,
+        lng: this.location.position.lng,
         icon: "https://i.imgur.com/9Fho7kq.png"
       }
     ];
@@ -100,7 +97,7 @@ class Map extends Component {
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
           defaultCenter={this.center}
-          defaultZoom={12}
+          defaultZoom={14}
         >
           {this.renderMarkers(markers)}
         </GoogleMapReact>
@@ -123,8 +120,8 @@ class Map extends Component {
       status: "inSession",
 
       sessionStartLocation: {
-        lat: this.props.lat,
-        lng: this.props.lng
+        lat: this.location.position.lat,
+        lng: this.location.position.lng
       }
     });
   };
