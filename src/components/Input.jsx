@@ -39,11 +39,11 @@ class Input extends React.Component {
               <span class="slider round"></span>
             </label>
           </div>
-          <div>
+          <div> 
             <label className="aroundToogleButton">Set Expiration</label>
           </div>
         </div>
-        <Button
+        <Button 
           className="btn btn-primary"
           text="START"
           handleClick={() => this.props.onStartSession()}
