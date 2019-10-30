@@ -51,6 +51,7 @@ class App extends Component {
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
+
     this.interval = setInterval(() => this.checkMessage(), 1000);
     console.log(this.state.messages);
     //this.removeMessages();
@@ -59,6 +60,7 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log(this.state.messages);
+
   }
 
   render() {
@@ -129,6 +131,13 @@ class App extends Component {
   }
 
   checkMessage() {
+    this.setState({
+      location: {
+        lat: this.state.location.lat + 0.001,
+        long: this.state.location.long + 0.001
+      }
+    });
+
     console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
