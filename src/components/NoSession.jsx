@@ -1,6 +1,6 @@
-import React from 'react';
-import Button from './Button';
-import '../styles/Controls.css';
+import React from "react";
+import Button from "./Button";
+import "../styles/Controls.css";
 
 function NoSession(props) {
   return (

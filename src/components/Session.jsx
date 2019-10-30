@@ -1,6 +1,6 @@
-import React from 'react';
-import Button from './Button';
-import '../styles/Controls.css';
+import React from "react";
+import Button from "./Button";
+import "../styles/Controls.css";
 
 class Session extends React.Component {
   // initialise component state
@@ -28,9 +28,9 @@ class Session extends React.Component {
       let hours = date.getHours();
       let minutes = date.getMinutes();
       let seconds = date.getSeconds();
-      hours = hours < 10 ? '0' + hours : hours;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
       this.setState({
         timer: {
           hours: hours,

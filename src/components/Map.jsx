@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import NoSession from './NoSession';
-import Session from './Session';
-import Input from './Input';
-import Marker from './Marker';
-import '../styles/GoogleMap.css';
-import { GOOGLE_API_KEY } from '../apis/googleMapsApi';
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import NoSession from "./NoSession";
+import Session from "./Session";
+import Input from "./Input";
+import Marker from "./Marker";
+import "../styles/GoogleMap.css";
+import { GOOGLE_API_KEY } from "../apis/googleMapsApi";
 
 class Map extends Component {
   state = {
-    status: 'noSession',
+    status: "noSession",
     inputTimes: null,
     sessionStartLocation: {
       lat: null,
       lng: null
     },
-    expiryTime: '00:00',
+    expiryTime: "00:00",
     markers: []
   };
 
@@ -40,9 +40,9 @@ class Map extends Component {
 
   // conditionally render the controls based on component state
   renderControls() {
-    if (this.state.status === 'noSession') {
+    if (this.state.status === "noSession") {
       return <NoSession onSetTimer={this.setTimer} />;
-    } else if (this.state.status === 'setTimer') {
+    } else if (this.state.status === "setTimer") {
       return (
         <Input
           onClearSession={this.clearSession}
@@ -50,7 +50,7 @@ class Map extends Component {
           onSetExpiry={this.setExpiry}
         />
       );
-    } else if (this.state.status === 'inSession') {
+    } else if (this.state.status === "inSession") {
       return (
         <Session
           onClearSession={this.clearSession}
@@ -81,19 +81,19 @@ class Map extends Component {
   render() {
     const markers = [
       {
-        title: 'Current Location',
+        title: "Current Location",
         lat: this.props.lat,
         lng: this.props.lng,
-        icon: 'https://i.imgur.com/9Fho7kq.png'
+        icon: "https://i.imgur.com/9Fho7kq.png"
       }
     ];
 
-    this.state.status === 'inSession' &&
+    this.state.status === "inSession" &&
       markers.unshift({
-        title: 'Stored Location',
+        title: "Stored Location",
         lat: this.state.sessionStartLocation.lat,
         lng: this.state.sessionStartLocation.lng,
-        icon: 'https://i.imgur.com/4lwh63l.png'
+        icon: "https://i.imgur.com/4lwh63l.png"
       });
 
     return (
@@ -102,7 +102,7 @@ class Map extends Component {
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
           defaultCenter={this.center}
           defaultZoom={12}
-          style={{ height: '300px' }}
+          style={{ height: "300px" }}
         >
           {this.renderMarkers(markers)}
         </GoogleMapReact>
@@ -113,16 +113,16 @@ class Map extends Component {
 
   //callback functions that set Map state from children
   setTimer = () => {
-    this.setState({ status: 'setTimer' });
+    this.setState({ status: "setTimer" });
   };
 
   clearSession = () => {
-    this.setState({ status: 'noSession' });
+    this.setState({ status: "noSession" });
   };
 
   startSession = () => {
     this.setState({
-      status: 'inSession',
+      status: "inSession",
 
       sessionStartLocation: {
         lat: this.props.lat,

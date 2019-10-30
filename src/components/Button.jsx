@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/Button.css';
+import React from "react";
+import "../styles/Button.css";
 
 /*  
 The button component takes three props: handleClick, color and text.

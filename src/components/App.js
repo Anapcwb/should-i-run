@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import '../styles/App.css';
-import Loading from './Loading';
-import Map from './Map';
-import Message from './Message';
-import Header from './Header';
+import React, { Component } from "react";
+import "../styles/App.css";
+import Loading from "./Loading";
+import Map from "./Map";
+import Message from "./Message";
+import Header from "./Header";
 
 class App extends Component {
   constructor(props) {
@@ -17,18 +17,18 @@ class App extends Component {
       },
       isLoading: true,
       gpsSignal: false,
-      messageToSend: '',
+      messageToSend: "",
       messageIdToSend: 0,
       messages: [
         {
           id: 1,
           time: Date.now() + 5000,
-          content: 'Your parking time is expiring.'
+          content: "Your parking time is expiring."
         },
         {
           id: 2,
           time: Date.now() + 10000,
-          content: 'Your parking duration has expired.'
+          content: "Your parking duration has expired."
         }
       ]
     };
@@ -56,7 +56,7 @@ class App extends Component {
   getLocation() {
     let coordinates = {};
     // get coordinates from geolocation api
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       /* geolocation is available */
       navigator.geolocation.getCurrentPosition(position => {
         coordinates = {
@@ -78,7 +78,7 @@ class App extends Component {
       });
     } else {
       /* geolocation IS NOT available */
-      console.log('geolocation is not available');
+      console.log("geolocation is not available");
 
       //this setState change the gpsSignal state back to false,
       //when there is no network after the app has been loaded and the location has been retrieved
@@ -115,7 +115,7 @@ class App extends Component {
       }
     });
 
-    console.log('I just ran!');
+    console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
       //for each object in messages array, check if its time is less than the current time
@@ -139,7 +139,7 @@ class App extends Component {
 
   //this is s conditional rendering to check whether there is a message due to be delivered and display it in Message subcomponent, otherwise return nothing
   getMessage() {
-    if (this.state.messageToSend === '') {
+    if (this.state.messageToSend === "") {
       return;
     }
     return (
@@ -151,7 +151,7 @@ class App extends Component {
   //this method is passed in msgButton property as msgButton={this.msgButton} to be rendered in conditional rendering.
   msgButton = () => {
     //fat arrow to bind this
-    console.log('buttonClicked');
+    console.log("buttonClicked");
     //remove every content in messages array by comparing the index of messages.id with the index of messageIdToSend
     var index = this.state.messages.findIndex(
       m => m.id === this.state.messageIdToSend
@@ -159,7 +159,7 @@ class App extends Component {
     this.state.messages.splice(index, 1);
     console.log(this.state.messageIdToSend, index);
     this.setState({ messageIdToSend: this.state.messages.id });
-    this.setState({ messageToSend: '' });
+    this.setState({ messageToSend: "" });
   };
 }
 export default App;

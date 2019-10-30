@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import NoSession from './NoSession';
-import Session from './Session';
-import Input from './Input';
-import '../styles/GoogleMap.css';
-import { GOOGLE_MAPS_API } from '../apis/googleMapsApi';
+import React, { Component } from "react";
+import NoSession from "./NoSession";
+import Session from "./Session";
+import Input from "./Input";
+import "../styles/GoogleMap.css";
+import { GOOGLE_MAPS_API } from "../apis/googleMapsApi";
 
 class Map extends Component {
   // initialize component state
   state = {
-    status: 'noSession',
+    status: "noSession",
     inputTimes: null,
     sessionStartLocation: {
       lat: null,
       lng: null
     },
-    expiryTime: '00:00'
+    expiryTime: "00:00"
   };
 
   // declare fields
@@ -45,7 +45,7 @@ class Map extends Component {
 
   // Initialize and add the map
   initMap = () => {
-    this.map = new window.google.maps.Map(document.getElementById('map'), {
+    this.map = new window.google.maps.Map(document.getElementById("map"), {
       zoom: 15,
       center: this.center
     });
@@ -53,15 +53,15 @@ class Map extends Component {
 
     const locations = [
       {
-        title: 'Current Location',
+        title: "Current Location",
         position: this.center,
-        icon: 'https://img.icons8.com/metro/26/000000/running.png',
+        icon: "https://img.icons8.com/metro/26/000000/running.png",
         map: this.map
       },
       {
-        title: 'Stored Location',
+        title: "Stored Location",
         position: this.london,
-        icon: 'https://img.icons8.com/material/24/000000/car--v1.png',
+        icon: "https://img.icons8.com/material/24/000000/car--v1.png",
         map: this.map
       }
     ];
@@ -79,9 +79,9 @@ class Map extends Component {
 
   // conditionally render the controls based on component state
   renderControls() {
-    if (this.state.status === 'noSession') {
+    if (this.state.status === "noSession") {
       return <NoSession onSetTimer={this.setTimer} />;
-    } else if (this.state.status === 'setTimer') {
+    } else if (this.state.status === "setTimer") {
       return (
         <Input
           onClearSession={this.clearSession}
@@ -89,7 +89,7 @@ class Map extends Component {
           onSetExpiry={this.setExpiry}
         />
       );
-    } else if (this.state.status === 'inSession') {
+    } else if (this.state.status === "inSession") {
       return (
         <Session
           onClearSession={this.clearSession}
@@ -110,16 +110,16 @@ class Map extends Component {
 
   //callback functions that set Map state from children
   setTimer = () => {
-    this.setState({ status: 'setTimer' });
+    this.setState({ status: "setTimer" });
   };
 
   clearSession = () => {
-    this.setState({ status: 'noSession' });
+    this.setState({ status: "noSession" });
   };
 
   startSession = () => {
     this.setState({
-      status: 'inSession',
+      status: "inSession",
 
       sessionStartLocation: {
         lat: this.props.lat,
@@ -137,8 +137,8 @@ class Map extends Component {
 
 // append the Google Maps <script> tag to the document
 function loadScript(url) {
-  let index = window.document.getElementsByTagName('script')[0];
-  let script = document.createElement('script');
+  let index = window.document.getElementsByTagName("script")[0];
+  let script = document.createElement("script");
   script.src = url;
   script.async = true;
   script.defer = true;

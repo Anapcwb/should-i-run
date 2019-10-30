@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Duration from './Duration';
-import Expiration from './Expiration';
-import CloseWindowButton from './CloseWindowButton';
-import Button from './Button';
-import '../styles/App.css';
-import '../styles/Controls.css';
+import React, { Component } from "react";
+import Duration from "./Duration";
+import Expiration from "./Expiration";
+import CloseWindowButton from "./CloseWindowButton";
+import Button from "./Button";
+import "../styles/App.css";
+import "../styles/Controls.css";
 
 class Input extends React.Component {
   /*constructor(props) {
