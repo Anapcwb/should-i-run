@@ -39,7 +39,7 @@ class App extends Component {
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
-    this.interval = setInterval(() => this.checkMessage(), 1000);
+    this.interval = setInterval(() => this.checkMessage(), 999999000);
   }
 
   render() {

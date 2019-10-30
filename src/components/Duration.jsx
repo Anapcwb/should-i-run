@@ -21,8 +21,8 @@ class Duration extends Component {
   render() {
     return (
       <div className="timer">
-        <label htmlFor="startTime">Set Duration: </label>
         <input
+          className="inputButtonBox"
           type="time"
           id="startTime"
           value={this.state.expiration}

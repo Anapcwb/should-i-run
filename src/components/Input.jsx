@@ -24,16 +24,28 @@ class Input extends React.Component {
 
   render() {
     return (
-      <div className="controls">
+      <div className="backgroundPosition">
         <CloseWindowButton handleClick={this.props.onClearSession} />
         {this.getTimer()}
-       <label className="switch">
-          <p>Set Duration</p>
-          <input type="checkbox" onClick={() => this.ToggleButton()} />
-          <span class="slider round"></span>
-          <p >Set Expiration</p>
-        </label>
-        <Button className="btn btn-primary" text="START" handleClick={() => this.props.onStartSession()} />
+        <div className="container">
+          <div>
+            <label className="toogleButton">Set Duration</label>
+          </div>
+          <div>
+            <label className="switch">
+              <input type="checkbox" onClick={() => this.ToggleButton()} />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            <label className="toogleButton">Set Expiration</label>
+          </div>
+        </div>
+        <Button
+          className="btn btn-primary"
+          text="START"
+          handleClick={() => this.props.onStartSession()}
+        />
       </div>
     );
   }
