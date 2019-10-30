@@ -21,11 +21,11 @@ class App extends Component {
       messageIdToSend: 0,
       messages: [
         {
-          id: 1,
-          time: Date.now() + 5000,
-          content: "Your parking time is running out!"
-        },
-        {
+          //id: 1,
+          //time: Date.now() + 5000,
+          //content: "Your parking time is running out!"
+        }
+        /*{
           id: 2,
           time: Date.now() + 10000,
           content:
@@ -41,7 +41,7 @@ class App extends Component {
           id: 4,
           time: Date.now() + 20000,
           content: "Your parking time has run out!"
-        }
+        }*/
       ]
     };
 
