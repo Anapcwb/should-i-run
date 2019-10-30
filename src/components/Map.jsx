@@ -25,18 +25,18 @@ class Map extends Component {
     lng: this.props.lng
   };
 
-  componentDidMount() {
-    this.setState({
-      markers: [
-        {
-          title: 'Current Location',
-          lat: this.props.lat,
-          lng: this.props.lng,
-          icon: 'https://img.icons8.com/metro/26/000000/running.png'
-        }
-      ]
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     markers: [
+  //       {
+  //         title: 'Current Location',
+  //         lat: this.props.lat,
+  //         lng: this.props.lng,
+  //         icon: 'https://img.icons8.com/metro/26/000000/running.png'
+  //       }
+  //     ]
+  //   });
+  // }
 
   // conditionally render the controls based on component state
   renderControls() {
@@ -56,6 +56,8 @@ class Map extends Component {
           onClearSession={this.clearSession}
           expiryTime={this.state.expiryTime}
           setSessionMarkers={this.setSessionMarkers}
+          addMessage={this.props.addMessage}
+          removeMessages={this.props.removeMessages}
         />
       );
     }
