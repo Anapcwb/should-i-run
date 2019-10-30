@@ -25,10 +25,10 @@ class Input extends React.Component {
   render() {
     return (
       <div className="backgroundPosition">
-        <div>
+       
           <CloseWindowButton handleClick={this.props.onClearSession} />
           {this.getTimer()}
-        </div>
+       
         <div className="container">
           <div>
             <label className="aroundToogleButton">Set Duration</label>
