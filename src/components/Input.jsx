@@ -25,10 +25,10 @@ class Input extends React.Component {
   render() {
     return (
       <div className="backgroundPosition">
-        <div>
+       
           <CloseWindowButton handleClick={this.props.onClearSession} />
           {this.getTimer()}
-        </div>
+       
         <div className="container">
           <div>
             <label className="aroundToogleButton">Set Duration</label>
@@ -40,12 +40,13 @@ class Input extends React.Component {
             </label>
           </div>
           <div>
-            <label className="aroundToogleButton">Set Expiration</label>
+            <label className="aroundToogleButton">Set Expiry</label>
           </div>
         </div>
         <Button
           className="btn btn-primary"
           text="START"
+          color="blue"
           handleClick={() => this.props.onStartSession()}
         />
       </div>
