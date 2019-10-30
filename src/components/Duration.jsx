@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Button from "./Button";
+//import Button from "./Button";
 import "../styles/App.css";
+import "../styles/Ana.css";
 
 class Duration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expiration: "00:00"
+      expiration: "01:00"
     };
   }
 
@@ -20,8 +21,8 @@ class Duration extends Component {
   render() {
     return (
       <div className="timer">
-        <label htmlFor="startTime">Set Duration: </label>
         <input
+          className="inputButtonBox"
           type="time"
           id="startTime"
           value={this.state.expiration}

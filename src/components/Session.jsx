@@ -23,14 +23,18 @@ class Session extends React.Component {
       if (currentTime <= expiryTime) {
         clearInterval(this.intervalID);
       }
+
+
       let millisecs = expiryTime - currentTime;
       let date = new Date(millisecs);
       let hours = date.getHours();
       let minutes = date.getMinutes();
       let seconds = date.getSeconds();
+
       hours = hours < 10 ? "0" + hours : hours;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
+
       this.setState({
         timer: {
           hours: hours,
