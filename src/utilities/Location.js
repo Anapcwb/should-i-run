@@ -24,7 +24,7 @@ export default class Location {
         this.onPositionReceived,
         this.locationNotReceived
       );
-      if (this.mode === "live") {
+      if (this.mode !== "debug") {
         this.watchID = navigator.geolocation.watchPosition(
           this.onPositionReceived,
           this.locationNotReceived
@@ -51,7 +51,7 @@ export default class Location {
   };
 
   squareWalk = () => {
-    this.getLocation();
+    // this.getLocation();
     this.intervalID = setInterval(() => this.intervalWalk(), 100);
   };
 
