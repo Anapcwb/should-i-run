@@ -112,22 +112,23 @@ class Map extends Component {
     this.setState({ status: "noSession" });
   };
 
-  startSession = () => {
+  startSession = expiration => {
     this.setState({
       status: "inSession",
 
       sessionStartLocation: {
         lat: this.props.lat,
         lng: this.props.lng
-      }
-    });
-  };
-
-  setExpiry = expiration => {
-    this.setState({
+      },
       expiryTime: expiration
     });
   };
+
+  // setExpiry = expiration => {
+  //   this.setState({
+  //     expiryTime: expiration
+  //   });
+  // };
 }
 
 export default Map;
