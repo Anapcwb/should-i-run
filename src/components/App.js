@@ -129,7 +129,7 @@ class App extends Component {
     this.setState({
       location: {
         lat: this.state.location.lat + 0.001,
-        long: this.state.location.long + 0.001
+        long: this.state.location.lng + 0.001
       }
     });
 
