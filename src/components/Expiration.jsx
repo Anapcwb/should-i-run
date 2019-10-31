@@ -30,10 +30,14 @@ class Expiration extends Component {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     console.log(hours, minutes);
+
     if (hours < 10) {
-      return "0" + hours + ":" + minutes;
+      hours = "0" + hours;
     }
-    console.log(hours, minutes);
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return hours + ":" + minutes;
   }
 
   render() {
