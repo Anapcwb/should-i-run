@@ -17,15 +17,14 @@ class Session extends React.Component {
 
   // calculate and format the countdown timer, and set as state
   calcTimer(expiryTime) {
-    //let expiryTime = Date.now() + 1;
+    let timeToExpiry = Date.now() - expiryTime;
     this.intervalID = setInterval(() => {
       let currentTime = Date.now();
-      if (currentTime <= expiryTime) {
+      if (currentTime <= timeToExpiry) {
         clearInterval(this.intervalID);
       }
 
-
-      let millisecs = expiryTime - currentTime;
+      let millisecs = timeToExpiry - currentTime;
       let date = new Date(millisecs);
       let hours = date.getHours();
       let minutes = date.getMinutes();

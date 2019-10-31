@@ -2,16 +2,15 @@ export default class Location {
   constructor(mode) {
     this.mode = mode;
     this.getLocation();
-    if (mode === "debug") {
-      this.squareWalk();
-    }
   }
 
   onPositionReceived = position => {
-    //console.log(position);
     this.position.lat = position.coords.latitude;
     this.position.lng = position.coords.longitude;
     this.position.unixtime = Date.now();
+    if (this.mode === "debug") {
+      this.squareWalk();
+    }
   };
 
   locationNotReceived = positionError => {
@@ -24,12 +23,12 @@ export default class Location {
         this.onPositionReceived,
         this.locationNotReceived
       );
-      if (this.mode !== "debug") {
-        this.watchID = navigator.geolocation.watchPosition(
-          this.onPositionReceived,
-          this.locationNotReceived
-        );
-      }
+      // if (this.mode !== "debug") {
+      //   this.watchID = navigator.geolocation.watchPosition(
+      //     this.onPositionReceived,
+      //     this.locationNotReceived
+      //   );
+      // }
     }
   };
 
@@ -51,7 +50,6 @@ export default class Location {
   };
 
   squareWalk = () => {
-    // this.getLocation();
     this.intervalID = setInterval(() => this.intervalWalk(), 100);
   };
 
