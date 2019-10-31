@@ -30,14 +30,17 @@ class Expiration extends Component {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     console.log(hours, minutes);
-    return hours + ":" + minutes;
+    if (hours < 10) {
+      return "0" + hours + ":" + minutes;
+    }
+    console.log(hours, minutes);
   }
 
   render() {
     return (
       <div className="timer">
-        
-        <input className="inputButtonBox"
+        <input
+          className="inputButtonBox"
           type="time"
           id="startTime"
           value={this.state.expiration}
