@@ -19,8 +19,9 @@ class Input extends React.Component {
     unixExp: 0
   };
 
-  setTime(unixExp) {
-    this.setState({ unixExp })
+  setTime = unixExp => {
+    this.setState({ unixExp });
+    console.log(unixExp); //
   };
 
   ToggleButton = () => {
@@ -30,10 +31,9 @@ class Input extends React.Component {
   render() {
     return (
       <div className="backgroundPosition">
+        <CloseWindowButton handleClick={this.props.onClearSession} />
+        {this.renderInput()}
 
-          <CloseWindowButton handleClick={this.props.onClearSession} />
-          {this.renderInput()}
-       
         <div className="container">
           <div>
             <label className="aroundToogleButton">Set Duration</label>
@@ -52,13 +52,11 @@ class Input extends React.Component {
           className="btn btn-primary"
           text="START"
           color="blue"
-          handleClick={() => this.props.onStartSession()}
+          handleClick={() => this.props.onStartSession(this.state.unixExp)}
         />
       </div>
     );
   }
-
-
 
   renderInput() {
     if (this.state.isDuration) {

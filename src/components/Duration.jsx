@@ -25,8 +25,6 @@ class Duration extends Component {
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
   };
- 
-  state = {};
 
   render() {
     return (
