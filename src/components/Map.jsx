@@ -19,15 +19,12 @@ class Map extends Component {
         lat: null,
         lng: null
       },
-      expiryTime: "00:00",
-      markers: []
+      expiryTime: "00:00"
+      //markers: []
     };
-    this.location = new Location("debug"); //or demo
+    //this.location = new Location("debug"); //debug or live
   }
 
-  componentDidMount = () => {
-    //this.location.squareWalk();
-  };
   // set the center location for the map received from App
   center = {
     lat: this.props.lat,
@@ -78,8 +75,8 @@ class Map extends Component {
     const markers = [
       {
         title: "Current Location",
-        lat: this.location.position.lat,
-        lng: this.location.position.lng,
+        lat: this.props.lat,
+        lng: this.props.lng,
         icon: "https://i.imgur.com/9Fho7kq.png"
       }
     ];
@@ -120,8 +117,8 @@ class Map extends Component {
       status: "inSession",
 
       sessionStartLocation: {
-        lat: this.location.position.lat,
-        lng: this.location.position.lng
+        lat: this.props.lat,
+        lng: this.props.lng
       }
     });
   };
