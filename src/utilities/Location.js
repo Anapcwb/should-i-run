@@ -8,7 +8,7 @@ export default class Location {
   }
 
   onPositionReceived = position => {
-    console.log(position);
+    //console.log(position);
     this.position.lat = position.coords.latitude;
     this.position.lng = position.coords.longitude;
     this.position.unixtime = Date.now();

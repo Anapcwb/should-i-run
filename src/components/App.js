@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import Map from "./Map";
 import Message from "./Message";
 import Header from "./Header";
+import Location from "../utilities/Location";
 
 class App extends Component {
   constructor(props) {
@@ -12,11 +13,11 @@ class App extends Component {
       //state.location is dynamically updated with getLocation method
       location: {
         lat: null,
-        long: null,
+        lng: null,
         time: null
       },
       isLoading: true,
-      gpsSignal: false,
+      //gpsSignal: false,
       messageToSend: "",
       messageIdToSend: 0,
       messages: [
@@ -46,19 +47,22 @@ class App extends Component {
     };
 
     /*this method is called inside the constructor method, because it manipulates the state*/
-    this.getLocation();
+    //this.getLocation();
+    this.location = new Location("debug"); //or live
+    //this.setLocation();
+    //console.log("location:", this.location.position);
   }
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
   componentDidMount() {
-    this.interval = setInterval(() => this.checkMessage(), 1000);
-    console.log(this.state.messages);
+    this.interval = setInterval(() => this.scheduledTasksInterval(), 1000);
+    //console.log(this.state.messages);
     //this.removeMessages();
     this.addMessage(1570669322, "Parking message");
   }
 
   componentDidUpdate() {
-    console.log(this.state.messages);
+    //console.log(this.state.messages);
   }
 
   render() {
@@ -72,41 +76,34 @@ class App extends Component {
     );
   }
 
-  getLocation() {
-    let coordinates = {};
-    // get coordinates from geolocation api
-    if ("geolocation" in navigator) {
-      /* geolocation is available */
-      navigator.geolocation.getCurrentPosition(position => {
-        coordinates = {
-          lat: position.coords.latitude,
-          long: position.coords.longitude
-        };
-
-        //these setState change the state.location.lat and state.location.long dynamically with the coordinates variable to retrieve user's current location,
-        //change state.isLoading to false to notify that the loading screen has been loaded
-        //change state.gpsSignal to true to notify that the GPS signal to retrieve the location has been found
-        this.setState({ location: coordinates });
-        this.setState({ isLoading: false });
-        this.setState({ gpsSignal: true });
-
-        console.log(this.state);
-
-        //this updates the state.location.time in a form of unix timestamp
-        coordinates.time = Date.now();
-      });
-    } else {
-      /* geolocation IS NOT available */
-      console.log("geolocation is not available");
-
-      //this setState change the gpsSignal state back to false,
-      //when there is no network after the app has been loaded and the location has been retrieved
-      this.setState({ gpsSignal: false });
-    }
-
-    //outputs value of coordinates
-    return coordinates;
+  scheduledTasksInterval() {
+    this.checkMessage();
+    this.checkLocation();
   }
+
+  checkLocation() {
+    if (this.location.position.lat !== null) {
+      this.setLocation();
+    }
+  }
+
+  setLocation = () => {
+    let coordinates = {};
+    //console.log(this.location.position);
+    //     //these setState change the state.location.lat and state.location.long dynamically with the coordinates variable to retrieve user's current location,
+    //     //change state.isLoading to false to notify that the loading screen has been loaded
+    //     //change state.gpsSignal to true to notify that the GPS signal to retrieve the location has been found
+    coordinates.lat = this.location.position.lat;
+    coordinates.lng = this.location.position.lng;
+    this.setState({ location: coordinates });
+    this.setState({ isLoading: false });
+    //     //this.setState({ gpsSignal: true });
+
+    //   console.log(this.state);
+
+    //     //this updates the state.location.time in a form of unix timestamp
+    //     coordinates.time = Date.now();
+  };
 
   //this method is a conditional rendering that updates the state of isLoading
   //if it remains true, then displays Loading subcomponent, else, displays Map subcomponent.
@@ -119,7 +116,7 @@ class App extends Component {
         <Header />
         <Map
           lat={this.state.location.lat}
-          lng={this.state.location.long}
+          lng={this.state.location.lng}
           timestamp={this.state.location.time}
           removeMessages={this.removeMessages}
           addMessage={this.addMessage}
@@ -203,8 +200,3 @@ class App extends Component {
   }
 }
 export default App;
-//write two functions to delete messages when a session has ended
-//and to add a message in an array object when a session has started
-//make a new object with properties and then push this obj onto the array as messages
-//two parameters id find the highest id and add +1, time and content
-//12digits math random math round
