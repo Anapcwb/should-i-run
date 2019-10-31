@@ -15,7 +15,12 @@ class Input extends React.Component {
   }*/
 
   state = {
-    isDuration: true //false means is expiry time
+    isDuration: true, //false means is expiry time
+    unixExp: 0
+  };
+
+  setTime(unixExp) {
+    this.setState({ unixExp })
   };
 
   ToggleButton = () => {
@@ -27,7 +32,7 @@ class Input extends React.Component {
       <div className="backgroundPosition">
 
           <CloseWindowButton handleClick={this.props.onClearSession} />
-          {this.getTimer()}
+          {this.renderInput()}
        
         <div className="container">
           <div>
@@ -53,11 +58,13 @@ class Input extends React.Component {
     );
   }
 
-  getTimer() {
+
+
+  renderInput() {
     if (this.state.isDuration) {
-      return <Duration onSetExpiry={this.props.onSetExpiry} />;
+      return <Duration setTime={this.setTime} />;
     } else {
-      return <Expiration onSetExpiry={this.props.onSetExpiry} />;
+      return <Expiration setTime={this.setTime} />;
     }
   }
 }

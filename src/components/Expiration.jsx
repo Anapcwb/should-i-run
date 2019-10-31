@@ -22,7 +22,7 @@ class Expiration extends Component {
     console.log(unixExp);
 
     this.setState({ expiration: event.target.value });
-    this.props.onSetExpiry(unixExp);
+    this.props.setTime(unixExp);
   };
 
   future() {

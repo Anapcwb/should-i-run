@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import Button from "./Button";
 import "../styles/App.css";
 import "../styles/Ana.css";
+import { parkingDuration } from "../utilities/math";
 
 class Duration extends Component {
   constructor(props) {
@@ -12,10 +13,19 @@ class Duration extends Component {
   }
 
   handleInput = event => {
-    this.setState({ expiration: event.target.value });
-    this.props.onSetExpiry(event.target.value);
-  };
+    console.log(event.target.value);
+    var parts = event.target.value.split(":");
+    console.log(parts[0]);
 
+    var unixDur = parkingDuration(parts[0], parts[1]);
+    console.log(unixDur);
+
+    var unixExp = Date.now() + unixDur;
+
+    this.setState({ expiration: event.target.value });
+    this.props.setTime(unixExp);
+  };
+ 
   state = {};
 
   render() {
