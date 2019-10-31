@@ -126,13 +126,6 @@ class App extends Component {
   }
 
   checkMessage() {
-    this.setState({
-      location: {
-        lat: this.state.location.lat + 0.001,
-        long: this.state.location.long + 0.001
-      }
-    });
-
     console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
