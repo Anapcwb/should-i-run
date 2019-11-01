@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import Button from "./Button";
 //import Session from "./Session";
-import { timeToUnix } from "../utilities/math";
+import { addTimeToUnix } from "../utilities/math";
 import "../styles/App.css";
 import "../styles/Ana.css";
 
@@ -18,8 +18,8 @@ class Expiration extends Component {
     var parts = event.target.value.split(":");
     console.log(parts[0]);
 
-    var unixExp = timeToUnix(parts[0], parts[1]);
-    console.log(unixExp);
+    var unixExp = addTimeToUnix(parts[0], parts[1]);
+    console.log(">>>>>>" + unixExp);
 
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
