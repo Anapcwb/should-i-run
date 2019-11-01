@@ -17,10 +17,7 @@ class Duration extends Component {
     var parts = event.target.value.split(":");
     console.log(parts[0]);
 
-    var unixDur = parkingDuration(parts[0], parts[1]);
-    console.log(unixDur);
-
-    var unixExp = Date.now() + unixDur;
+    var unixExp = parkingDuration(parts[0], parts[1]);
 
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
