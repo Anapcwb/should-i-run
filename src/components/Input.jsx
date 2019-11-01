@@ -16,7 +16,7 @@ class Input extends React.Component {
 
   state = {
     isDuration: true, //false means is expiry time
-    unixExp: 0
+    unixExp: Date.now() + 3600000
   };
 
   setTime = unixExp => {
