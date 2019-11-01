@@ -21,11 +21,11 @@ class App extends Component {
       messageToSend: "",
       messageIdToSend: 0,
       messages: [
-        {
-          //id: 1,
-          //time: Date.now() + 5000,
-          //content: "Your parking time is running out!"
-        }
+        //{
+        //id: 1,
+        //time: Date.now() + 5000,
+        //content: "Your parking time is running out!"
+        //}
         /*{
           id: 2,
           time: Date.now() + 10000,
@@ -174,7 +174,7 @@ class App extends Component {
   };
 
   removeMessages = () => {
-    this.setState({ messages: {} });
+    this.setState({ messages: [] });
   };
 
   addMessage = (unixTime, content) => {
