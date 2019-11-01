@@ -45,11 +45,13 @@ console.log(Date.now() + " > " + res);*/
 export function notifyUser(notificationTime) {
   //take a unix time number
   //remove 5 minutes (60*5 in unix seconds) and 5% (100 - 5% = 95 and then tranforms it into a fraction 0.95) of the total time
-  var percent = notificationTime * 0.95;
-  var fixed = Math.round(percent - 300);
+  var percent = notificationTime; //(Date.now() - notificationTime) * 0.95;
+  var fixed = Math.round(percent - 300000);
   if (fixed < 0) {
     fixed = 0;
   }
+  console.log(fixed);
+
   return fixed;
 }
 
