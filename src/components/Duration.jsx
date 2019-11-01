@@ -13,13 +13,18 @@ class Duration extends Component {
   }
 
   handleInput = event => {
-    console.log(event.target.value);
-    var parts = event.target.value.split(":");
-    console.log(parts[0]);
+    var evt = event.target.value;
+
+    var parts = evt.split(":");
+
+    if (parts[0] === "00" && parts[1] < 10) {
+      parts[1] = "10";
+      evt = "00:10";
+    }
 
     var unixExp = parkingDuration(parts[0], parts[1]);
 
-    this.setState({ expiration: event.target.value });
+    this.setState({ expiration: evt });
     this.props.setTime(unixExp);
   };
 

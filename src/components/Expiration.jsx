@@ -14,12 +14,13 @@ class Expiration extends Component {
   }
 
   handleInput = event => {
-    console.log(event.target.value);
+    //if the time is less than 5 mins past midnight
+
+    //change time to 00:05 else
+
     var parts = event.target.value.split(":");
-    console.log(parts[0]);
 
     var unixExp = addTimeToUnix(parts[0], parts[1]);
-    console.log(">>>>>>" + unixExp);
 
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
