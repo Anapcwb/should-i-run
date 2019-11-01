@@ -18,7 +18,7 @@ class Expiration extends Component {
     var parts = event.target.value.split(":");
     console.log(parts[0]);
 
-    var unixExp = parkingDuration(parts[0], parts[1]);
+    var unixExp = timeToUnix(parts[0], parts[1]);
     console.log(unixExp);
 
     this.setState({ expiration: event.target.value });
