@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import Button from "./Button";
 import "../styles/App.css";
 import "../styles/Ana.css";
-import { timeToUnix } from "../utilities/math";
+import { parkingDuration } from "../utilities/math";
 
 class Duration extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Duration extends Component {
     var parts = event.target.value.split(":");
     console.log(parts[0]);
 
-    var unixExp = timeToUnix(parts[0], parts[1]);
+    var unixExp = parkingDuration(parts[0], parts[1]);
 
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
