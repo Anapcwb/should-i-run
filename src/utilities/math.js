@@ -2,9 +2,9 @@
 //for the purpose of taking expiry of the parking ticket for the duration input and then add it to the current time
 export function parkingDuration(hour, minute) {
   //convert hours to seconds
-  var hrs = hour * 3600;
+  var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
-  var mns = minute * 60;
+  var mns = minute * (60 * 1000);
   //add hour seconds and minute seconds to current time and return
   return hrs + mns + Date.now();
 }
