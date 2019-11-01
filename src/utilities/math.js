@@ -9,6 +9,15 @@ export function parkingDuration(hour, minute) {
   return hrs + mns + Date.now();
 }
 
+export function timeToUnix(hour, minute) {
+  //convert hours to seconds
+  var hrs = hour * (3600 * 1000);
+  //convert minutes to seconds
+  var mns = minute * (60 * 1000);
+  //add hour seconds and minute seconds to current time and return
+  return hrs + mns;
+}
+
 /*var res = parkingDuration(10, 10);
 console.log(Date.now() + " > " + res);*/
 
