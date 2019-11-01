@@ -24,8 +24,18 @@ export function addTimeToUnix(hour, minute) {
   //convert minutes to seconds
   var mns = minute * (60 * 1000);
   //add hour seconds and minute seconds to midnight time in unix and return it
-  var midnight = new Date();
-  return hrs + mns + midnight.setHours(0, 0, 0, 0);
+  var now = new Date();
+  var hours = now.getHours();
+  var minutes = now.getMinutes();
+  var oneDay = 86400 * 1000;
+
+  if (hour < hours) {
+    return hrs + mns + now.setHours(0, 0, 0, 0) + oneDay;
+  }
+  if (hour === hours && minute < minutes) {
+    return hrs + mns + now.setHours(0, 0, 0, 0) + oneDay;
+  }
+  return hrs + mns + now.setHours(0, 0, 0, 0);
 }
 
 /*var res = parkingDuration(10, 10);
