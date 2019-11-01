@@ -173,11 +173,11 @@ class App extends Component {
     this.setState({ messageToSend: "" });
   };
 
-  removeMessages() {
+  removeMessages = () => {
     this.setState({ messages: {} });
-  }
+  };
 
-  addMessage(unixTime, content) {
+  addMessage = (unixTime, content) => {
     //create an obj based on the props its gonna get
     var pushMsg = {
       id: getRandomId(123456789121, 234567891234),
@@ -190,6 +190,6 @@ class App extends Component {
     function getRandomId(min, max) {
       return Math.round(Math.random() * (max - min) + min);
     }
-  }
+  };
 }
 export default App;
