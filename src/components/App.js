@@ -58,7 +58,7 @@ class App extends Component {
     this.interval = setInterval(() => this.scheduledTasksInterval(), 1000);
     //console.log(this.state.messages);
     //this.removeMessages();
-    this.addMessage(1570669322, "Parking message");
+    //this.addMessage(1570669322, "Parking message");
   }
 
   componentDidUpdate() {
