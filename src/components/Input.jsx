@@ -41,7 +41,7 @@ class Input extends React.Component {
           <div>
             <label className="switch">
               <input type="checkbox" onClick={() => this.ToggleButton()} />
-              <span class="slider round"></span>
+              <span className="slider round"></span>
             </label>
           </div>
           <div>
