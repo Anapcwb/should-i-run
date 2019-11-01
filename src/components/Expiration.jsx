@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import Button from "./Button";
 //import Session from "./Session";
-import { parkingDuration } from "../utilities/math";
+import { timeToUnix } from "../utilities/math";
 import "../styles/App.css";
 import "../styles/Ana.css";
 
