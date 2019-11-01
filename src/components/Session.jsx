@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../styles/Controls.css";
+import { notifyUser } from "../utilities/math";
 
 class Session extends React.Component {
   // initialise component state
@@ -49,15 +50,30 @@ class Session extends React.Component {
     }, 200);
   }
 
+  // when the session starts
   componentDidMount() {
+    // start the timer
     this.calcTimer(this.props.expiryTime);
+
+    // add messages to the message array
+    this.props.addMessage(
+      this.props.expiryTime,
+      "Your parking time has run out!"
+    );
+
+    this.props.addMessage(
+      notifyUser(this.props.expiryTime, "Your parking time is running out!")
+    );
   }
 
+  // when session is cancelled
   componentWillUnmount() {
+    // stop the timer
     clearInterval(this.intervalID);
-  }
 
-  // TODO: dispatch messages when conditions are met
+    // clear messages
+    this.props.removeMessages();
+  }
 
   render() {
     const { hours, minutes, seconds } = this.state.timer;
