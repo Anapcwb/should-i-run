@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import Button from "./Button";
 import "../styles/App.css";
 import "../styles/Ana.css";
-import { parkingDuration } from "../utilities/math";
+import { timeToUnix } from "../utilities/math";
 
 class Duration extends Component {
   constructor(props) {
