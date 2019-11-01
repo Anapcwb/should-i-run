@@ -62,7 +62,8 @@ class Session extends React.Component {
     );
 
     this.props.addMessage(
-      notifyUser(this.props.expiryTime, "Your parking time is running out!")
+      notifyUser(this.props.expiryTime),
+      "Your parking time is running out!"
     );
   }
 
