@@ -48,7 +48,7 @@ class App extends Component {
 
     /*this method is called inside the constructor method, because it manipulates the state*/
     //this.getLocation();
-    this.location = new Location("debug"); //or live
+    this.location = new Location("debug"); //or nothing in there
     //this.setLocation();
     //console.log("location:", this.location.position);
   }
@@ -174,22 +174,23 @@ class App extends Component {
   };
 
   removeMessages = () => {
+    this.setState({ messageToSend: "" });
     this.setState({ messages: [] });
   };
 
   addMessage = (unixTime, content) => {
     //create an obj based on the props its gonna get
     var pushMsg = {
-      id: getRandomId(123456789121, 234567891234),
+      id: Math.round(Math.random() * 1000000000),
       time: unixTime,
       content: content
     };
     //push this obj into messages array
     this.state.messages.push(pushMsg);
     //random id
-    function getRandomId(min, max) {
-      return Math.round(Math.random() * (max - min) + min);
-    }
+    //function getRandomId(min, max) {
+    //   return Math.round(Math.random() * (max - min) + min);
+    //}
   };
 }
 export default App;
