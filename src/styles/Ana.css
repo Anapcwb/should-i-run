@@ -124,3 +124,8 @@ input:valid + span:after {
   justify-content: center;
   align-content: space-evenly;
 }
+
+/* override font awesome */
+.fa-times-circle {
+  margin-right: unset !important;
+}

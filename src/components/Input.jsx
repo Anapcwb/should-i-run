@@ -31,7 +31,10 @@ class Input extends React.Component {
   render() {
     return (
       <div className="backgroundPosition">
-        <CloseWindowButton handleClick={this.props.onClearSession} />
+        <div className="closeBtn">
+          <CloseWindowButton handleClick={this.props.onClearSession} />
+        </div>
+
         {this.renderInput()}
 
         <div className="container">
