@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../styles/Controls.css";
-import { notifyUser, getgeoNotificationStatus } from "../utilities/math";
+import { notifyUser, geoNotificationStatus } from "../utilities/math";
 
 class Session extends React.Component {
   // initialise component state
@@ -60,7 +60,7 @@ class Session extends React.Component {
 
   dispatchMessages = () => {
     // check which message should be dispatched
-    const result = getgeoNotificationStatus(
+    const result = geoNotificationStatus(
       this.props.expiryTime,
       this.props.currentLocation,
       this.props.storedLocaiton
