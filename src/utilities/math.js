@@ -1,6 +1,6 @@
 //this function converts users' inputs that contain hours and minutes to unix timestamp
 //for the purpose of taking expiry of the parking ticket for the duration input and then add it to the current time
-function parkingDuration(hour, minute) {
+export function parkingDuration(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -9,7 +9,7 @@ function parkingDuration(hour, minute) {
   return hrs + mns + Date.now();
 }
 
-function timeToUnix(hour, minute) {
+export function timeToUnix(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -18,7 +18,7 @@ function timeToUnix(hour, minute) {
   return hrs + mns;
 }
 
-function addTimeToUnix(hour, minute) {
+export function addTimeToUnix(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -42,7 +42,7 @@ function addTimeToUnix(hour, minute) {
 console.log(Date.now() + " > " + res);*/
 
 //this function works out at what time a notification should be sent to the users
-function notifyUser(expiryTime) {
+export function notifyUser(expiryTime) {
   //take a unix time number
   //remove 5 minutes (60*5 in unix seconds) and 5% (100 - 5% = 95 and then tranforms it into a fraction 0.95) of the total time
   var duration = expiryTime - Date.now();
