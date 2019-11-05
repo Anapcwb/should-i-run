@@ -43,8 +43,8 @@ export default class Location {
   };
 
   config = {
-    increment: 0.0001,
-    totalSteps: 100,
+    increment: 0.00015,
+    totalSteps: 300,
     currentStep: 0,
     direction: "forwards"
   };

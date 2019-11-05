@@ -93,7 +93,7 @@ class Map extends Component {
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
           defaultCenter={this.center}
-          defaultZoom={14}
+          defaultZoom={13}
         >
           {this.renderMarkers(markers)}
         </GoogleMapReact>

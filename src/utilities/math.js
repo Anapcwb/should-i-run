@@ -154,7 +154,7 @@ let person = {
 
 geoNotificationStatus(Date.now() + 9500000, car, person);*/
 
-function geoNotificationStatus(expiryTime, car, person) {
+export function geoNotificationStatus(expiryTime, car, person) {
   //console.log(car.lat, car.long);
 
   //task 1, get distance between car and person
