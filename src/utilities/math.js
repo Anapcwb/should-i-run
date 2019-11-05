@@ -1,6 +1,6 @@
 //this function converts users' inputs that contain hours and minutes to unix timestamp
 //for the purpose of taking expiry of the parking ticket for the duration input and then add it to the current time
-export function parkingDuration(hour, minute) {
+function parkingDuration(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -9,7 +9,7 @@ export function parkingDuration(hour, minute) {
   return hrs + mns + Date.now();
 }
 
-export function timeToUnix(hour, minute) {
+function timeToUnix(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -18,7 +18,7 @@ export function timeToUnix(hour, minute) {
   return hrs + mns;
 }
 
-export function addTimeToUnix(hour, minute) {
+function addTimeToUnix(hour, minute) {
   //convert hours to seconds
   var hrs = hour * (3600 * 1000);
   //convert minutes to seconds
@@ -42,17 +42,17 @@ export function addTimeToUnix(hour, minute) {
 console.log(Date.now() + " > " + res);*/
 
 //this function works out at what time a notification should be sent to the users
-export function notifyUser(notificationTime) {
+function notifyUser(expiryTime) {
   //take a unix time number
   //remove 5 minutes (60*5 in unix seconds) and 5% (100 - 5% = 95 and then tranforms it into a fraction 0.95) of the total time
-  var percent = notificationTime; //(Date.now() - notificationTime) * 0.95;
+  var duration = expiryTime - Date.now();
+  var percent = duration * 0.95; //(Date.now() - notificationTime) * 0.95;
   var fixed = Math.round(percent - 300000);
   if (fixed < 0) {
     fixed = 0;
   }
   console.log(fixed);
-
-  return fixed;
+  return fixed + Date.now();
 }
 
 /*var data = 1571840528;
@@ -109,3 +109,65 @@ function calculateSteps(currentTime, expiryTime, distanceBetweenLocations) {
 
 /*var res = calculateSteps(Date.now(), Date.now() + 1000000, 0.10001);
 console.log(res);*/
+
+function convert_KmPerHr_To_KmPerSec() {
+  return 1 / 3600;
+}
+function convertMinToSecUnix(num) {
+  return num * 60;
+}
+function tooFar(dist, time) {
+  time = Math.round((time - Date.now()) / 1000); //time to duration
+
+  let distanceCanTravel = time * convert_KmPerHr_To_KmPerSec();
+  let fixedTimeMargin = 300 * convert_KmPerHr_To_KmPerSec();
+  let distanceCanTravelIfYouRun = distanceCanTravel * 2;
+  let distanceCanTravelIfSlow = distanceCanTravel * 0.8;
+  distanceCanTravelIfYouRun += fixedTimeMargin;
+  console.log(dist, distanceCanTravelIfSlow);
+  if (dist < distanceCanTravelIfSlow) {
+    //add padding to geofence
+    return 0;
+  } else {
+    if (dist > distanceCanTravel) {
+      //checks if too far
+      if (dist < distanceCanTravelIfYouRun) {
+        //check if too far when running
+        return 2; //run
+      }
+      return 3; //you are too far away
+    } else {
+      return 1; //walk
+    }
+  }
+}
+
+car = {
+  lat: 1.004,
+  lng: 1.004
+};
+
+person = {
+  lat: 1,
+  lng: 1
+};
+
+geoNotificationStatus(Date.now() + 9500000, car, person);
+
+function geoNotificationStatus(expiryTime, car, person) {
+  //console.log(car.lat, car.long);
+
+  //task 1, get distance between car and person
+  const distance = calculateCoordinate(
+    car.lat,
+    car.lng,
+    person.lat,
+    person.lng
+  );
+
+  //task 2, call are you too far
+  const checkNotification = tooFar(distance, expiryTime);
+  console.log(distance, expiryTime);
+  console.log(">>>>>", checkNotification);
+  return checkNotification;
+}
