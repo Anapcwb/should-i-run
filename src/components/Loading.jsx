@@ -6,11 +6,15 @@ class Loading extends Component {
   render() {
     return (
       <div className="loading">
-        <h1>Should I Run?</h1>
+        <div className="loadingTitle">
+          <h1>Should I Run?</h1>
+        </div>
         <div className="loadingLogo">
           <img src={loadingLogo} className="stylingLoadingLogo" alt="logo" />
         </div>
-        <p>&copy; Wild Devs London 2019</p>
+        <div className="loadingCopyright">
+          <p>&copy; Wild Devs London 2019</p>
+        </div>
       </div>
     );
   }
