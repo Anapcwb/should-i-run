@@ -43,27 +43,24 @@ i {
   min-height: 100vh;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .loading h1 {
-  margin-top: 0;
   color: white;
   font-size: 51px;
   text-align: center;
-  padding-top: 20vh;
-}
-
-.loadingLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 10%;
 }
 
 .loading p {
   text-align: center;
   color: white;
   font-size: 28px;
-  margin-top: 8rem;
+  margin-top: 7rem;
 }
 
 @-webkit-keyframes animate-logo {
@@ -103,6 +100,7 @@ i {
 .styleApp {
   position: relative;
   z-index: 200;
+  height: 100%;
 }
 
 .styleMessageContainer {
