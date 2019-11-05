@@ -142,17 +142,17 @@ function tooFar(dist, time) {
   }
 }
 
-car = {
+/*let car = {
   lat: 1.004,
   lng: 1.004
 };
 
-person = {
+let person = {
   lat: 1,
   lng: 1
 };
 
-geoNotificationStatus(Date.now() + 9500000, car, person);
+geoNotificationStatus(Date.now() + 9500000, car, person);*/
 
 function geoNotificationStatus(expiryTime, car, person) {
   //console.log(car.lat, car.long);
