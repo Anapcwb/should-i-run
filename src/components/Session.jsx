@@ -11,11 +11,7 @@ class Session extends React.Component {
       minutes: 0,
       seconds: 0
     },
-    sentMessages: {
-      headback: false,
-      ifYouRun: false,
-      tooLate: false
-    }
+    messageSeverity: 0
   };
 
   // initialize the intervalID (this is used to clear the interval)
@@ -24,10 +20,10 @@ class Session extends React.Component {
   // calculate and format the countdown timer, and set as state
   calcTimer(expiryTime) {
     // dispatch messages if required
-    this.dispatchMessages();
 
     let remainingTime, currentTime, hours, minutes, seconds;
     this.intervalID = setInterval(() => {
+      this.dispatchMessages();
       currentTime = Date.now();
       // get the time remaining in milliseconds
       remainingTime = expiryTime - currentTime;
@@ -60,49 +56,33 @@ class Session extends React.Component {
 
   dispatchMessages = () => {
     // check which message should be dispatched
+    // returns a severity of 0, 1, 2 or 3
     const result = geoNotificationStatus(
       this.props.expiryTime,
       this.props.currentLocation,
-      this.props.storedLocaiton
+      this.props.storedLocation
     );
 
-    // dispatch the messages based on the result
-    switch (result) {
-      case 1:
-        if (!this.state.sentMessages.headback) {
-          this.setState({ sentMessages: { headback: true } });
-          this.props.addMessage(
-            Date.now(),
-            "You better head back now if you want to make it back in time"
-          );
-        }
-        break;
-      case 2:
-        if (!this.state.sentMessages.ifYouRun) {
-          this.setState({ sentMessages: { ifYouRun: true } });
-          this.props.addMessage(
-            Date.now(),
-            "You can make it back in time, BUT ONLY IF YOU RUN!!!"
-          );
-        }
-        break;
-      case 3:
-        if (!this.state.sentMessages.tooLate) {
-          this.setState({ sentMessages: { tooLate: true } });
-          this.props.addMessage(
-            Date.now(),
-            "Sorry, you wont make it back in time before your parking expires :("
-          );
-        }
-        // Sorry, you wont make it back in time before your parking expires :(
-        break;
-      default:
-        break;
+    // set messages to be dispatched in array
+    const messages = [
+      "You better head back now if you want to make it back in time",
+      "You can make it back in time, BUT ONLY IF YOU RUN!!!",
+      "Sorry, you wont make it back in time before your parking expires :("
+    ];
+
+    // when the result returned is greater than the severity stored
+    // in state, update the the state to the result and send the
+    // corresponding message
+    if (result > this.state.messageSeverity) {
+      // TODO: clear messages?
+      this.setState({ messageSeverity: result });
+      this.props.addMessage(Date.now(), messages[result - 1]);
     }
   };
-
   // when the session starts
   componentDidMount() {
+    console.log(this.props.storedLocation);
+
     // start the timer
     this.calcTimer(this.props.expiryTime);
 
