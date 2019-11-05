@@ -70,6 +70,13 @@ class Map extends Component {
     }
   }
 
+  createMapOptions = () => {
+    return {
+      zoomControl: false,
+      fullscreenControl: false
+    };
+  };
+
   render() {
     const markers = [
       {
@@ -91,6 +98,7 @@ class Map extends Component {
     return (
       <div id="map">
         <GoogleMapReact
+          options={this.createMapOptions}
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
           defaultCenter={this.center}
           defaultZoom={13}

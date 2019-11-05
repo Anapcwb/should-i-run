@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../styles/Controls.css";
+
 import { notifyUser, geoNotificationStatus } from "../utilities/math";
 
 class Session extends React.Component {
@@ -111,7 +112,7 @@ class Session extends React.Component {
     const { hours, minutes, seconds } = this.state.timer;
     return (
       <div className="controls">
-        <div className="timer">{`${hours}:${minutes}:${seconds}`}</div>
+        <div className="clock">{`${hours}:${minutes}:${seconds}`}</div>
         <Button
           handleClick={this.props.onClearSession}
           text="DISMISS"
