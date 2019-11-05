@@ -7,8 +7,6 @@ import Marker from "./Marker";
 import "../styles/GoogleMap.css";
 import { GOOGLE_API_KEY } from "../apis/googleMapsApi";
 
-import Location from "../utilities/Location";
-
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -48,9 +46,10 @@ class Map extends Component {
         <Session
           onClearSession={this.clearSession}
           expiryTime={this.state.expiryTime}
-          setSessionMarkers={this.setSessionMarkers}
           addMessage={this.props.addMessage}
           removeMessages={this.props.removeMessages}
+          storedLocation={this.state.sessionStartLocation}
+          currentLocation={{ lat: this.props.lat, lng: this.props.lng }}
         />
       );
     }

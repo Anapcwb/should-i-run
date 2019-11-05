@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import "../styles/Controls.css";
-import { notifyUser } from "../utilities/math";
+import { notifyUser, getgeoNotificationStatus } from "../utilities/math";
 
 class Session extends React.Component {
   // initialise component state
@@ -10,6 +10,11 @@ class Session extends React.Component {
       hours: 0,
       minutes: 0,
       seconds: 0
+    },
+    sentMessages: {
+      headback: false,
+      ifYouRun: false,
+      tooLate: false
     }
   };
 
@@ -18,6 +23,9 @@ class Session extends React.Component {
 
   // calculate and format the countdown timer, and set as state
   calcTimer(expiryTime) {
+    // dispatch messages if required
+    this.dispatchMessages();
+
     let remainingTime, currentTime, hours, minutes, seconds;
     this.intervalID = setInterval(() => {
       currentTime = Date.now();
@@ -50,12 +58,55 @@ class Session extends React.Component {
     }, 200);
   }
 
+  dispatchMessages = () => {
+    // check which message should be dispatched
+    const result = getgeoNotificationStatus(
+      this.props.expiryTime,
+      this.props.currentLocation,
+      this.props.storedLocaiton
+    );
+
+    // dispatch the messages based on the result
+    switch (result) {
+      case 1:
+        if (!this.state.sentMessages.headback) {
+          this.setState({ sentMessages: { headback: true } });
+          this.props.addMessage(
+            Date.now(),
+            "You better head back now if you want to make it back in time"
+          );
+        }
+        break;
+      case 2:
+        if (!this.state.sentMessages.ifYouRun) {
+          this.setState({ sentMessages: { ifYouRun: true } });
+          this.props.addMessage(
+            Date.now(),
+            "You can make it back in time, BUT ONLY IF YOU RUN!!!"
+          );
+        }
+        break;
+      case 3:
+        if (!this.state.sentMessages.tooLate) {
+          this.setState({ sentMessages: { tooLate: true } });
+          this.props.addMessage(
+            Date.now(),
+            "Sorry, you wont make it back in time before your parking expires :("
+          );
+        }
+        // Sorry, you wont make it back in time before your parking expires :(
+        break;
+      default:
+        break;
+    }
+  };
+
   // when the session starts
   componentDidMount() {
     // start the timer
     this.calcTimer(this.props.expiryTime);
 
-    // add messages to the message array
+    // queue messages to the message array
     this.props.addMessage(
       this.props.expiryTime,
       "Your parking time has run out!"
