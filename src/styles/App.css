@@ -1,5 +1,11 @@
-.html {
-  font-family: "Roboto", sans-serif;
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
 }
 
 .header {

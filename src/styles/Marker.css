@@ -8,7 +8,7 @@
     transform: scale(0);
   }
   80% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
   to {
     transform: scale(1);

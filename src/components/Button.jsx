@@ -9,7 +9,7 @@ text: the text of the button
 */
 function Button(props) {
   return (
-    <div>
+    <div id="buttonDiv">
       <button onClick={props.handleClick} className={`btn ${props.color}`}>
         {props.text}
       </button>
