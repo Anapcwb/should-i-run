@@ -82,7 +82,7 @@ class Session extends React.Component {
   };
   // when the session starts
   componentDidMount() {
-    console.log(this.props.storedLocation);
+    // console.log(this.props.storedLocation);
 
     // start the timer
     this.calcTimer(this.props.expiryTime);

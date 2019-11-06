@@ -51,7 +51,7 @@ export function notifyUser(expiryTime) {
   if (fixed < 0) {
     fixed = 0;
   }
-  console.log(fixed);
+  //console.log(fixed);
   return fixed + Date.now();
 }
 
@@ -65,8 +65,8 @@ function calculateCoordinate(lat1, lon1, lat2, lon2) {
   var R = 6371; // km
   var dLat = toRad(lat2 - lat1);
   var dLon = toRad(lon2 - lon1);
-  var lat1 = toRad(lat1);
-  var lat2 = toRad(lat2);
+  lat1 = toRad(lat1);
+  lat2 = toRad(lat2);
   var a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
@@ -89,17 +89,17 @@ console.log(distance);*/
 
 //this function works out if users have travelled too far based on the time between now and the expiry
 function calculateSteps(currentTime, expiryTime, distanceBetweenLocations) {
-  console.log(currentTime, expiryTime, distanceBetweenLocations);
+  //console.log(currentTime, expiryTime, distanceBetweenLocations);
 
   //this variable stores the remaining time for users to travel: current time minus the expiry time
   var timeLeft = expiryTime - currentTime;
-  console.log(timeLeft);
+  //console.log(timeLeft);
 
   //this variable stores how many fractions of a km that users can travel per second
   var distanceCanTravelPerSecond = 1 / 3600;
   //this variable stores how far the users can travel in milliseconds by dividing timeLeft with 1000
   var distanceUsersCanTravel = distanceCanTravelPerSecond * (timeLeft / 1000);
-  console.log(distanceCanTravelPerSecond, distanceUsersCanTravel);
+  //console.log(distanceCanTravelPerSecond, distanceUsersCanTravel);
 
   if (distanceBetweenLocations > distanceUsersCanTravel) {
     return false;
@@ -124,7 +124,7 @@ function tooFar(dist, time) {
   let distanceCanTravelIfYouRun = distanceCanTravel * 2;
   let distanceCanTravelIfSlow = distanceCanTravel * 0.8;
   distanceCanTravelIfYouRun += fixedTimeMargin;
-  console.log(dist, distanceCanTravelIfSlow);
+  //console.log(dist, distanceCanTravelIfSlow);
   if (dist < distanceCanTravelIfSlow) {
     //add padding to geofence
     return 0;
@@ -167,7 +167,7 @@ export function geoNotificationStatus(expiryTime, car, person) {
 
   //task 2, call are you too far
   const checkNotification = tooFar(distance, expiryTime);
-  console.log(distance, expiryTime);
-  console.log(">>>>>", checkNotification);
+  //console.log(distance, expiryTime);
+  //console.log(">>>>>", checkNotification);
   return checkNotification;
 }

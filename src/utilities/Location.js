@@ -11,6 +11,7 @@ export default class Location {
     if (this.mode === "debug") {
       this.squareWalk();
     }
+    console.log(">>> Position from Location class: ", position.coords);
   };
 
   locationNotReceived = positionError => {
@@ -23,12 +24,13 @@ export default class Location {
         this.onPositionReceived,
         this.locationNotReceived
       );
-      // if (this.mode !== "debug") {
-      //   this.watchID = navigator.geolocation.watchPosition(
-      //     this.onPositionReceived,
-      //     this.locationNotReceived
-      //   );
-      // }
+      if (this.mode !== "debug") {
+        this.watchID = navigator.geolocation.watchPosition(
+          this.onPositionReceived,
+          this.locationNotReceived
+        );
+        console.log();
+      }
     }
   };
 

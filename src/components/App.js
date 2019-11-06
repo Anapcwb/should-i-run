@@ -48,9 +48,8 @@ class App extends Component {
 
     /*this method is called inside the constructor method, because it manipulates the state*/
     //this.getLocation();
-    this.location = new Location("debug"); //or nothing in there
+    this.location = new Location(); // call with 'debug' as argument for testing
     //this.setLocation();
-    //console.log("location:", this.location.position);
   }
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
@@ -59,6 +58,7 @@ class App extends Component {
     //console.log(this.state.messages);
     //this.removeMessages();
     //this.addMessage(1570669322, "Parking message");
+    //console.log("location:", this.location.position);
   }
 
   componentDidUpdate() {
@@ -126,7 +126,7 @@ class App extends Component {
   }
 
   checkMessage() {
-    console.log("I just ran!");
+    // console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
       //for each object in messages array, check if its time is less than the current time
@@ -162,7 +162,7 @@ class App extends Component {
   //this method is passed in msgButton property as msgButton={this.msgButton} to be rendered in conditional rendering.
   msgButton = () => {
     //fat arrow to bind this
-    console.log("buttonClicked");
+    // console.log("buttonClicked");
     //remove every content in messages array by comparing the index of messages.id with the index of messageIdToSend
     var index = this.state.messages.findIndex(
       m => m.id === this.state.messageIdToSend
