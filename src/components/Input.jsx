@@ -6,7 +6,7 @@ import Button from "./Button";
 import "../styles/App.css";
 import "../styles/Ana.css";
 
-class Input extends React.Component {
+class Input extends Component {
   /*constructor(props) {
     super(props);
     this.state = {

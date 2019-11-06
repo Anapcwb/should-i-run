@@ -126,7 +126,7 @@ class App extends Component {
   }
 
   checkMessage() {
-    console.log("I just ran!");
+    // console.log("I just ran!");
     //call display rel message    //iterate over messages array
     for (let i = 0; i < this.state.messages.length; i++) {
       //for each object in messages array, check if its time is less than the current time
@@ -162,7 +162,7 @@ class App extends Component {
   //this method is passed in msgButton property as msgButton={this.msgButton} to be rendered in conditional rendering.
   msgButton = () => {
     //fat arrow to bind this
-    console.log("buttonClicked");
+    // console.log("buttonClicked");
     //remove every content in messages array by comparing the index of messages.id with the index of messageIdToSend
     var index = this.state.messages.findIndex(
       m => m.id === this.state.messageIdToSend
