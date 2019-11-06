@@ -117,8 +117,8 @@ i {
 
 .styleMessage p {
   color: white;
-  font-weight: 500;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 20px;
   padding-bottom: 2rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -126,7 +126,8 @@ i {
 }
 
 .styleMessage {
-  background-color: #3f6891;
+  background-color: rgba(63, 104, 145, 0.7);
+  width: 90%;
   max-width: 400px;
   margin: auto;
   border-radius: 10px;
