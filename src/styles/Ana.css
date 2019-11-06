@@ -108,6 +108,8 @@ input:valid + span:after {
 }
 
 .inputButtonBox {
+  background-color: white;
+  color: #3f6891;
   font-size: 52px;
   width: 300px;
   text-align: center;
@@ -125,7 +127,9 @@ input:valid + span:after {
   align-content: space-evenly;
 }
 
-/* override font awesome */
-.fa-times-circle {
-  margin-right: unset !important;
+label {
+  font-size: 8px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
