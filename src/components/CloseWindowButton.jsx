@@ -1,9 +1,10 @@
 import React from "react";
+import closeButton from "../styles/Icon-material-cancel.svg";
 
 function CloseWindowButton(props) {
   return (
-    <div>
-      <i onClick={props.handleClick} className="fas fa-times-circle"></i>
+    <div className="close-button">
+      <img src={closeButton} alt="close button" onClick={props.handleClick} />
     </div>
   );
 }

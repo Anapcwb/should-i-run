@@ -38,11 +38,11 @@ i {
   padding: 0px;
 }
 
-.btn {
+/* .btn {
   padding: 10px;
   font-size: 20px;
   background-color: #3f6891;
-}
+} */
 
 .loading {
   background-color: #3f6891;
@@ -119,10 +119,11 @@ i {
   color: white;
   font-weight: 400;
   font-size: 20px;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  text-align: justify;
+  text-align: center;
+  margin: 5px;
 }
 
 .styleMessage {
@@ -133,10 +134,12 @@ i {
   border-radius: 10px;
 }
 
-.fa-times-circle {
+.close-button {
   display: flex;
   justify-content: flex-end;
-  padding-right: 0.7rem;
+
+  padding: 10px;
+  /* padding-right: 0.7rem;
   margin-top: 10px;
-  padding-top: 0.7rem;
+  padding-top: 0.7rem; */
 }
