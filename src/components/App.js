@@ -48,9 +48,8 @@ class App extends Component {
 
     /*this method is called inside the constructor method, because it manipulates the state*/
     //this.getLocation();
-    this.location = new Location("debug"); //or nothing in there
+    this.location = new Location(); // call with 'debug' as argument for testing
     //this.setLocation();
-    //console.log("location:", this.location.position);
   }
 
   //this.interval is a variable created in this App class component that calls checkMessage method in setInterval to access the properties of Messages state
@@ -59,6 +58,7 @@ class App extends Component {
     //console.log(this.state.messages);
     //this.removeMessages();
     //this.addMessage(1570669322, "Parking message");
+    //console.log("location:", this.location.position);
   }
 
   componentDidUpdate() {
