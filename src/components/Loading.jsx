@@ -13,6 +13,9 @@ class Loading extends Component {
         <div className="loadingLogo">
           <img src={loadingLogo} className="stylingLoadingLogo" alt="logo" />
         </div>
+        {this.props.message && (
+          <div className="loadingMessage">{this.props.message}</div>
+        )}
         <div className="loadingCopyright">
           <p>&copy; Wild Devs London 2019</p>
         </div>

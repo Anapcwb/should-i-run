@@ -15,7 +15,8 @@ class App extends Component {
       location: {
         lat: null,
         lng: null,
-        time: null
+        time: null,
+        errorMessages: ""
       },
       isLoading: true,
       messageToSend: "",
@@ -24,7 +25,7 @@ class App extends Component {
     };
 
     //this method is called inside the constructor method, because it manipulates the state
-    this.location = new Location("test"); // call with 'test' as argument for testing
+    this.location = new Location("testx"); // call with 'test' as argument for testing
   }
 
   componentDidMount() {
@@ -42,6 +43,12 @@ class App extends Component {
   checkLocation() {
     if (this.location.position.lat !== null) {
       this.setLocation();
+    }
+    if (this.location.position.error.code) {
+      console.log(this.location.position.error.message);
+      this.setState({
+        location: { errorMessages: this.location.position.error.message }
+      });
     }
   }
 
@@ -61,7 +68,7 @@ class App extends Component {
   //if it remains true, then displays Loading subcomponent, else, displays Map subcomponent.
   getActiveScreen() {
     if (this.state.isLoading) {
-      return <Loading />;
+      return <Loading message={this.location.position.error.message} />;
     }
     return (
       <React.Fragment>
