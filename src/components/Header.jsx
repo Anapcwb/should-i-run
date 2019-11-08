@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import headerLogo from "../styles/headerLogo.svg";
 import "../styles/App.css";
 
+//this component is a header
 class Header extends Component {
   render() {
     return (
