@@ -4,29 +4,33 @@ import Expiration from "./Expiration";
 import CloseWindowButton from "./CloseWindowButton";
 import Button from "./Button";
 import "../styles/App.css";
-import "../styles/Ana.css";
+import "../styles/Input.css";
 
+//input is the parent component for the collection of expiration or duration from the user
 class Input extends Component {
-  /*constructor(props) {
-    super(props);
-    this.state = {
-      textDisplay: false
-    };
-  }*/
-
   state = {
     isDuration: true, //false means is expiry time
-    unixExp: Date.now() + 3600000
+    unixExp: Date.now() + 3600000 //set a default expiry time
   };
 
+  //callback function to updates expiry Unix time
   setTime = unixExp => {
     this.setState({ unixExp });
-    console.log(unixExp); //
   };
 
-  ToggleButton = () => {
+  //this is function that toggles the duration and expiration
+  toggleButton = () => {
     this.setState({ isDuration: !this.state.isDuration });
   };
+
+  //conditionaly render duration or expiration based on the state
+  renderInput() {
+    if (this.state.isDuration) {
+      return <Duration setTime={this.setTime} />;
+    } else {
+      return <Expiration setTime={this.setTime} />;
+    }
+  }
 
   render() {
     return (
@@ -43,7 +47,7 @@ class Input extends Component {
           </div>
           <div>
             <label className="switch">
-              <input type="checkbox" onClick={() => this.ToggleButton()} />
+              <input type="checkbox" onClick={() => this.toggleButton()} />
               <span className="slider round"></span>
             </label>
           </div>
@@ -59,14 +63,6 @@ class Input extends Component {
         />
       </div>
     );
-  }
-
-  renderInput() {
-    if (this.state.isDuration) {
-      return <Duration setTime={this.setTime} />;
-    } else {
-      return <Expiration setTime={this.setTime} />;
-    }
   }
 }
 

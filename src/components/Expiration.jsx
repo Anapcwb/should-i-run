@@ -1,37 +1,35 @@
 import React, { Component } from "react";
-//import Button from "./Button";
-//import Session from "./Session";
 import { addTimeToUnix } from "../utilities/math";
 import "../styles/App.css";
-import "../styles/Ana.css";
+import "../styles/Input.css";
 
+//collect the expire time from the user
 class Expiration extends Component {
   constructor(props) {
+    //we are using the constructor so we can set the expiration prior to the render method
     super(props);
     this.state = {
-      expiration: this.future()
+      expiration: this.getDefaultExpiration() //sets the expiration to a point in the future
     };
   }
 
+  //handle onchange of the input time
   handleInput = event => {
-    //if the time is less than 5 mins past midnight
-
-    //change time to 00:05 else
-
-    var parts = event.target.value.split(":");
-
-    var unixExp = addTimeToUnix(parts[0], parts[1]);
+    var parts = event.target.value.split(":"); //convert the string in time to hours and minutes parts
+    var unixExp = addTimeToUnix(parts[0], parts[1]); //convert the parts in unix time
 
     this.setState({ expiration: event.target.value });
     this.props.setTime(unixExp);
   };
 
-  future() {
+  //get some expiration time in the future
+  getDefaultExpiration() {
     let date = new Date();
+    date.setHours(date.getHours() + 1); //set the hours based on getting hour plus one
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    console.log(hours, minutes);
 
+    //format the hours in minutes to make sure the browser receives the correct format
     if (hours < 10) {
       hours = "0" + hours;
     }

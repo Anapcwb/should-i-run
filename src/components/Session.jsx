@@ -2,7 +2,10 @@ import React from "react";
 import Button from "./Button";
 import "../styles/Controls.css";
 
-import { notifyUser, geoNotificationStatus } from "../utilities/math";
+import {
+  getEarlyNotificationUnix,
+  geoNotificationStatus
+} from "../utilities/math";
 
 class Session extends React.Component {
   // initialise component state
@@ -94,7 +97,7 @@ class Session extends React.Component {
     );
 
     this.props.addMessage(
-      notifyUser(this.props.expiryTime),
+      getEarlyNotificationUnix(this.props.expiryTime),
       "Your parking time is running out!"
     );
   }
