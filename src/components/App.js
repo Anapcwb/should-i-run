@@ -24,7 +24,7 @@ class App extends Component {
     };
 
     //this method is called inside the constructor method, because it manipulates the state
-    this.location = new Location("debug"); // call with 'debug' as argument for testing
+    this.location = new Location("test"); // call with 'test' as argument for testing
   }
 
   componentDidMount() {

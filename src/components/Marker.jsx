@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Marker.css";
 
+// configurable marker for display on the Map
 function Marker(props) {
   return (
     <div>

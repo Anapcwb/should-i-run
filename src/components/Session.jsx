@@ -1,12 +1,13 @@
 import React from "react";
 import Button from "./Button";
-import "../styles/Controls.css";
-
 import {
   getEarlyNotificationUnix,
   geoNotificationStatus
 } from "../utilities/math";
+import { MESSAGES, TIMEEXPIRED, TIMEXPIRY } from "../utilities/config";
+import "../styles/Controls.css";
 
+// Session formats and displays the countdown timer
 class Session extends React.Component {
   // initialise component state
   state = {
@@ -22,19 +23,27 @@ class Session extends React.Component {
   intervalID = 0;
 
   // calculate and format the countdown timer, and set as state
-  calcTimer(expiryTime) {
-    // dispatch messages if required
-
+  formatAndDisplayTimer(expiryTime) {
     let remainingTime, currentTime, hours, minutes, seconds;
+    // TODO: refactor intervalID declaration
     this.intervalID = setInterval(() => {
       this.dispatchMessages();
-      currentTime = Date.now();
+      currentTime = Date.now(); // get the current time
       // get the time remaining in milliseconds
       remainingTime = expiryTime - currentTime;
 
       // stop the timer when time runs out
       if (expiryTime <= currentTime) {
         clearInterval(this.intervalID);
+        // format the timer to display 00:00:00
+        this.setState({
+          time: {
+            hours: "00",
+            minutes: "00",
+            seconds: "00"
+          }
+        });
+        return;
       }
 
       // get the hours, minutes and seconds from milliseconds
@@ -67,38 +76,28 @@ class Session extends React.Component {
       this.props.storedLocation
     );
 
-    // set messages to be dispatched in array
-    const messages = [
-      "You better head back now if you want to make it back in time",
-      "You can make it back in time, BUT ONLY IF YOU RUN!!!",
-      "Sorry, you wont make it back in time before your parking expires :("
-    ];
-
     // when the result returned is greater than the severity stored
     // in state, update the the state to the result and send the
     // corresponding message
     if (result > this.state.messageSeverity) {
       // TODO: clear messages?
       this.setState({ messageSeverity: result });
-      this.props.addMessage(Date.now(), messages[result - 1]);
+      this.props.addMessage(Date.now(), MESSAGES[result - 1]);
     }
   };
+
   // when the session starts
   componentDidMount() {
-    // console.log(this.props.storedLocation);
-
-    // start the timer
-    this.calcTimer(this.props.expiryTime);
+    // start the interval
+    // TODO: refactor interval
+    this.formatAndDisplayTimer(this.props.expiryTime);
 
     // queue messages to the message array
-    this.props.addMessage(
-      this.props.expiryTime,
-      "Your parking time has run out!"
-    );
+    this.props.addMessage(this.props.expiryTime, TIMEEXPIRED);
 
     this.props.addMessage(
       getEarlyNotificationUnix(this.props.expiryTime),
-      "Your parking time is running out!"
+      TIMEXPIRY
     );
   }
 
@@ -115,6 +114,7 @@ class Session extends React.Component {
     const { hours, minutes, seconds } = this.state.timer;
     return (
       <div className="controls">
+        {/* render the timer */}
         <div className="clock">{`${hours}:${minutes}:${seconds}`}</div>
         <Button
           handleClick={this.props.onClearSession}

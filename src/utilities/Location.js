@@ -1,93 +1,107 @@
+/**
+ * This class provides location data from the Geolocation API
+ * It can simulate movemnent if instantiated in 'test' mode
+ * (const Location = new Location('test))
+ */
+import { WALK_CONFIG } from "../utilities/config";
+
 export default class Location {
+  // the constructor initiates the getLocation process
   constructor(mode) {
     this.mode = mode;
     this.getLocation();
   }
 
-  onPositionReceived = position => {
-    this.position.lat = position.coords.latitude;
-    this.position.lng = position.coords.longitude;
-    this.position.unixtime = Date.now();
-    if (this.mode === "debug") {
-      this.squareWalk();
-    }
-    console.log(">>> Position from Location class: ", position.coords);
-  };
-
-  locationNotReceived = positionError => {
-    console.log("Posistion Error: ", positionError);
-  };
-
-  getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        this.onPositionReceived,
-        this.locationNotReceived
-      );
-      if (this.mode !== "debug") {
-        this.watchID = navigator.geolocation.watchPosition(
-          this.onPositionReceived,
-          this.locationNotReceived
-        );
-        console.log();
-      }
-    }
-  };
-
-  clearPositionWatch = () => {
-    navigator.geolocation.clearWatch(this.watchID);
-  };
-
   position = {
+    error: {},
     lat: null,
     lng: null,
     unixtime: null
   };
 
-  config = {
-    increment: 0.00015,
-    totalSteps: 300,
-    currentStep: 0,
-    direction: "forwards"
+  // this method takes a positon object as an argument and sets the position
+  // property of the class. It also sets a unix timestamp
+  onPositionReceived = position => {
+    this.position.lat = position.coords.latitude;
+    this.position.lng = position.coords.longitude;
+    this.position.unixtime = Date.now();
+    // if the class is in 'test'mode, run the walking simulation
+    if (this.mode === "test") {
+      this.squareWalk();
+    }
   };
 
+  // this method handles location errors
+  locationNotReceived = positionError => {
+    this.position.error = positionError; // add the error message to the position property
+  };
+
+  // calls the Geolocation API to get the current location
+  getLocation = () => {
+    if (navigator.geolocation) {
+      // check if a location is available
+      navigator.geolocation.getCurrentPosition(
+        // gets a quick location
+        this.onPositionReceived,
+        this.locationNotReceived
+      );
+      if (this.mode !== "test") {
+        this.watchID = navigator.geolocation.watchPosition(
+          // update location when more accurate data available
+          this.onPositionReceived,
+          this.locationNotReceived
+        );
+      }
+    }
+  };
+
+  // This method can be called stop the watchPosition method
+  clearPositionWatch = () => {
+    navigator.geolocation.clearWatch(this.watchID);
+  };
+
+  // initiate the simulated movement (when in test mode)
   squareWalk = () => {
     this.intervalID = setInterval(() => this.intervalWalk(), 100);
   };
 
+  // update the coordinates
   intervalWalk = () => {
-    if (this.config.currentStep < this.config.totalSteps) {
+    // increment or decrement the longitide or lattitude based on the direction
+    if (WALK_CONFIG.currentStep < WALK_CONFIG.totalSteps) {
       if (
-        this.config.direction === "forwards" ||
-        this.config.direction === "backwards"
+        WALK_CONFIG.direction === "forwards" ||
+        WALK_CONFIG.direction === "backwards"
       ) {
         this.position.lat =
-          this.config.direction === "forwards"
-            ? (this.position.lat += this.config.increment)
-            : (this.position.lat -= this.config.increment);
+          WALK_CONFIG.direction === "forwards"
+            ? (this.position.lat += WALK_CONFIG.increment)
+            : (this.position.lat -= WALK_CONFIG.increment);
       } else if (
-        this.config.direction === "left" ||
-        this.config.direction === "right"
+        WALK_CONFIG.direction === "left" ||
+        WALK_CONFIG.direction === "right"
       ) {
         this.position.lng =
-          this.config.direction === "left"
-            ? (this.position.lng += this.config.increment)
-            : (this.position.lng -= this.config.increment);
+          WALK_CONFIG.direction === "left"
+            ? (this.position.lng += WALK_CONFIG.increment)
+            : (this.position.lng -= WALK_CONFIG.increment);
       }
-      this.config.currentStep += 1;
+      WALK_CONFIG.currentStep += 1;
     } else {
-      this.config.currentStep = 0;
-      this.config.direction =
-        this.config.direction === "forwards"
+      // reset the counter and change direction
+      WALK_CONFIG.currentStep = 0;
+      WALK_CONFIG.direction =
+        WALK_CONFIG.direction === "forwards"
           ? "left"
-          : this.config.direction === "left"
+          : WALK_CONFIG.direction === "left"
           ? "backwards"
-          : this.config.direction === "backwards"
+          : WALK_CONFIG.direction === "backwards"
           ? "right"
           : "forwards";
     }
   };
 
+  // can be used to stop the simulation
   clearSquareWalk = () => {
     clearInterval(this.interval);
   };
