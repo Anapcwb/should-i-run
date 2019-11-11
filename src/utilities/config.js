@@ -5,6 +5,12 @@ export const MESSAGES = [
   "Sorry, you wont make it back in time before your parking expires :("
 ];
 
+export const GEO_ERRORS = [
+  "You need to enable location services!",
+  "Location unavailable!",
+  "Location unavailable!"
+];
+
 export const TIMEXPIRY = "Your parking time is running out!";
 
 export const TIMEEXPIRED = "Your parking time has run out!";

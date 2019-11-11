@@ -34,7 +34,6 @@ export default class Location {
   // this method handles location errors
   locationNotReceived = positionError => {
     this.position.error = positionError; // add the error message to the position property
-    console.log(positionError);
 
     //if we are in test mode, start location as London and initiates squarewalk
     if (this.mode === "test") {

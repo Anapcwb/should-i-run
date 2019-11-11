@@ -5,6 +5,7 @@ import Message from "./Message";
 import Header from "./Header";
 import Location from "../utilities/Location";
 import "../styles/App.css";
+import { GEO_ERRORS } from "../utilities/config";
 
 //this is the main component
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
         lat: null,
         lng: null,
         time: null,
-        errorMessages: ""
+        errorMessage: ""
       },
       isLoading: true,
       messageToSend: "",
@@ -45,9 +46,10 @@ class App extends Component {
       this.setLocation();
     }
     if (this.location.position.error.code) {
-      console.log(this.location.position.error.message);
       this.setState({
-        location: { errorMessages: this.location.position.error.message }
+        location: {
+          errorMessage: GEO_ERRORS[this.location.position.error.code - 1]
+        }
       });
     }
   }
@@ -67,8 +69,9 @@ class App extends Component {
   //this method is a conditional rendering that checks isLoading
   //if it remains true, then displays Loading subcomponent, else, displays Map subcomponent.
   getActiveScreen() {
+    //console.log(this.state.errorMessages);
     if (this.state.isLoading) {
-      return <Loading message={this.location.position.error.message} />;
+      return <Loading message={this.state.location.errorMessage} />;
     }
     return (
       <React.Fragment>

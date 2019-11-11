@@ -5,6 +5,7 @@ import "../styles/App.css";
 //this component displays the loading screen of the app
 class Loading extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="loading">
         <div className="loadingTitle">
