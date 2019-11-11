@@ -1,3 +1,7 @@
+/*
+this file styles the marker animation
+*/
+
 .marker {
   height: 30px;
   animation: popout 1s ease;

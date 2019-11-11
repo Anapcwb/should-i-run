@@ -1,0 +1,29 @@
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.header {
+  background-color: #3f6891;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  margin-left: 1rem;
+}
+
+.headerLogo {
+  margin-right: 1rem;
+}
+
+.header h1 {
+  color: white;
+  font-size: 35px;
+}
+
+.stylingHeaderLogo {
+  margin-top: 10px;
+}

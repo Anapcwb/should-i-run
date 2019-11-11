@@ -6,9 +6,9 @@ export const MESSAGES = [
 ];
 
 export const GEO_ERRORS = [
-  "You need to enable location services!",
-  "Location unavailable!",
-  "Location unavailable!"
+  "You need to enable location services, this is performed in your device settings!",
+  "Location unavailable, please check your internet connection!",
+  "Location unavailable, unable to access geo location services!"
 ];
 
 export const TIMEXPIRY = "Your parking time is running out!";

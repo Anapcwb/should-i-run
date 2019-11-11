@@ -1,0 +1,59 @@
+.loading {
+  background-color: #3f6891;
+  min-height: 100vh;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading h1 {
+  color: white;
+  font-size: 51px;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.loading p {
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  margin-top: 7rem;
+}
+
+/*this is the animation for the logo on the loading screen*/
+@-webkit-keyframes animate-logo {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes animate-logo {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.stylingLoadingLogo {
+  -webkit-animation: animate-logo 2s infinite;
+  animation: animate-logo 2s infinite;
+}

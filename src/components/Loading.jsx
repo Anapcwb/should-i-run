@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import loadingLogo from "../styles/loadingLogo.svg";
-import "../styles/App.css";
+import "../styles/Loading.css";
 
 //this component displays the loading screen of the app
 class Loading extends Component {

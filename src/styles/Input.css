@@ -1,4 +1,6 @@
-/* The switch - the box around the slider */
+/* This css class styles Input and his children (Expiration and Duration)*/
+
+/* switch - the box around the slider */
 .switch {
   position: relative;
   display: flex;
@@ -64,7 +66,6 @@ input:checked + .slider:before {
 }
 
 /* Imput time */
-
 input[type="number"] {
   width: 100px;
 }
@@ -88,17 +89,15 @@ input:valid + span:after {
 .aroundToogleButton {
   height: 80px;
   color: white;
-  font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 20px;
-  font-family: "Ubuntu", sans-serif;
 }
 
 .backgroundPosition {
   position: fixed;
   bottom: 0px;
-  background-color: rgba(63, 104, 145, 0.6);
-  height: 90%;
+  background-color: rgba(63, 104, 145, 0.6); /* rgba to  support oppacity */
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

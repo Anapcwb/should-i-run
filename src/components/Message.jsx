@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CloseWindowButton from "./CloseWindowButton";
+import "../styles/Message.css";
 
 //this component displays messages
 class Message extends Component {

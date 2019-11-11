@@ -34,6 +34,7 @@ export default class Location {
   // this method handles location errors
   locationNotReceived = positionError => {
     this.position.error = positionError; // add the error message to the position property
+    //position error object is immutable even when copied as is actually interface
 
     //if we are in test mode, start location as London and initiates squarewalk
     if (this.mode === "test") {
