@@ -137,7 +137,7 @@ class Map extends Component {
           options={this.createMapOptions} // Google Maps options
           bootstrapURLKeys={{ key: GOOGLE_API_KEY }} //  Google Maps API key
           defaultCenter={this.center} // lat & long values
-          defaultZoom={13} // zoom setting on the map
+          defaultZoom={16} // zoom setting on the map
         >
           {/* render the markers on the map */}
           {this.renderMarkers(markers)}

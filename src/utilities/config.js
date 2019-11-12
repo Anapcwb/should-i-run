@@ -16,8 +16,8 @@ export const TIMEXPIRY = "Your parking time is running out!";
 export const TIMEEXPIRED = "Your parking time has run out!";
 
 export const WALK_CONFIG = {
-  increment: 0.00015,
-  totalSteps: 300,
+  increment: 0.000002,
+  totalSteps: 1500,
   currentStep: 0,
   direction: "forwards"
 };
