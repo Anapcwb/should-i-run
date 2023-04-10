@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.9749fbc3.chunk.css",
-    "main.js": "/static/js/main.cccdb663.chunk.js",
-    "main.js.map": "/static/js/main.cccdb663.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.5acd3983.js",
-    "runtime-main.js.map": "/static/js/runtime-main.5acd3983.js.map",
-    "static/js/2.426a6008.chunk.js": "/static/js/2.426a6008.chunk.js",
-    "static/js/2.426a6008.chunk.js.map": "/static/js/2.426a6008.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7d03870c6316b1cfe39b2460bf61e1e6.js": "/precache-manifest.7d03870c6316b1cfe39b2460bf61e1e6.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.9749fbc3.chunk.css.map": "/static/css/main.9749fbc3.chunk.css.map",
-    "static/media/Icon-material-cancel.svg": "/static/media/Icon-material-cancel.3193678a.svg",
-    "static/media/headerLogo.svg": "/static/media/headerLogo.4a08fb65.svg",
-    "static/media/loadingLogo.svg": "/static/media/loadingLogo.f2a5bd12.svg"
+    "main.css": "/should-i-run/static/css/main.9749fbc3.chunk.css",
+    "main.js": "/should-i-run/static/js/main.592f62b5.chunk.js",
+    "main.js.map": "/should-i-run/static/js/main.592f62b5.chunk.js.map",
+    "runtime-main.js": "/should-i-run/static/js/runtime-main.667d3ed9.js",
+    "runtime-main.js.map": "/should-i-run/static/js/runtime-main.667d3ed9.js.map",
+    "static/js/2.426a6008.chunk.js": "/should-i-run/static/js/2.426a6008.chunk.js",
+    "static/js/2.426a6008.chunk.js.map": "/should-i-run/static/js/2.426a6008.chunk.js.map",
+    "index.html": "/should-i-run/index.html",
+    "precache-manifest.7e513ce54163a7c03a247e26470dd2f4.js": "/should-i-run/precache-manifest.7e513ce54163a7c03a247e26470dd2f4.js",
+    "service-worker.js": "/should-i-run/service-worker.js",
+    "static/css/main.9749fbc3.chunk.css.map": "/should-i-run/static/css/main.9749fbc3.chunk.css.map",
+    "static/media/Icon-material-cancel.svg": "/should-i-run/static/media/Icon-material-cancel.3193678a.svg",
+    "static/media/headerLogo.svg": "/should-i-run/static/media/headerLogo.4a08fb65.svg",
+    "static/media/loadingLogo.svg": "/should-i-run/static/media/loadingLogo.f2a5bd12.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.5acd3983.js",
+    "static/js/runtime-main.667d3ed9.js",
     "static/js/2.426a6008.chunk.js",
     "static/css/main.9749fbc3.chunk.css",
-    "static/js/main.cccdb663.chunk.js"
+    "static/js/main.592f62b5.chunk.js"
   ]
 }
