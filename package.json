@@ -2,6 +2,7 @@
   "name": "shoud-i-run",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://anapcwb.github.io/should-i-run",
   "dependencies": {
     "google-map-react": "^1.1.5",
     "react": "^16.10.2",
