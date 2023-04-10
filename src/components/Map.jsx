@@ -5,7 +5,7 @@ import Session from "./Session";
 import Input from "./Input";
 import Marker from "./Marker";
 import "../styles/GoogleMap.css";
-import { GOOGLE_API_KEY } from "../apis/googleMapsApi";
+import GOOGLE_API_KEY from "../apis/googleMapsApi";
 
 // renders the GoogleMap and controls
 class Map extends Component {
